@@ -63,10 +63,27 @@
                     </li>
                 </ul>
                 <!-- Left links -->
-                <a class="navbar-brand purplecolor fw-bold" href="#">Connexion</a>
-                <button type="button" class="btn me-3 purplecolorbg fw-bold mb-0">
-                  Sign up for free
-                </button>
+                @if (Route::has('login'))
+                    @auth
+                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                            </x-dropdown-link>
+                        </form>
+                    @else
+                        <a class="navbar-brand purplecolor fw-bold" href="{{ route('login') }}">Connexion</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="btn me-3 purplecolorbg fw-bold mb-0">S'enregistrer</a>
+                        @endif
+                    @endauth
+                </div>
+                @endif
                 </div>
             </div>
             <!-- Container wrapper -->
@@ -171,7 +188,7 @@
 <footer class="text-center text-lg-start text-muted" id="footer">
     <!-- Section: Social media -->
     <section
-      class="d-flex justify-content-center justify-content-lg-between p-4"
+      class="d-flex justify-content-center justify-content-lg-between p-4 "
     >
 
     
@@ -180,9 +197,9 @@
   
     <!-- Section: Links  -->
     <section class="">
-      <div class="container text-center text-md-start mt-5">
+      <div class="container text-center text-md-start mt-13">
         <!-- Grid row -->
-        <div class="row mt-3">
+        <div class="row mt-3 align-items-end text-dark">
           <!-- Grid column -->
           <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4 text-center">
             <!-- Content -->
@@ -200,7 +217,7 @@
          
   
           <!-- Grid column -->
-          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 text-center">
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 text-center mt-10">
             <!-- Links -->
             <h6 class="text-uppercase fw-bold mb-4">
               Contact
@@ -215,7 +232,7 @@
           </div>
 
         <!-- Section: Social media -->
-        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 d-flex align-items-center">        <!-- Facebook -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 d-flex align-items-center pb-5">        <!-- Facebook -->
         <a class="btn btn-dark btn-outline-light border-1 border-dark btn-floating m-1" href="#!" role="button"
           ><i class="fab fa-facebook-f"></i
         ></a>
@@ -252,30 +269,6 @@
     <!-- Copyright -->
   </footer>
   <!-- Footer -->
-        
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
            
     </body>
 </html>

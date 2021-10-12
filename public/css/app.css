@@ -29035,7 +29035,7 @@ textarea.form-control-lg {
 }
 
 #footer {
-  background: url(/images/BackgroundWebF.jpg?056600f69a77379ab9a76746d286b05a) center center no-repeat;
+  background: url(/images/footer.svg?9af135f8c27b4f003b478d2a769fa346) center center no-repeat;
   background-size: cover;
 }
 
@@ -29082,6 +29082,14 @@ textarea.form-control-lg {
 
 .nobg {
   background: rgba(0, 0, 0, 0);
+}
+
+.mt-13 {
+  margin-top: 13em !important;
+}
+
+.mt-10 {
+  margin-top: 10em;
 }
 
 
