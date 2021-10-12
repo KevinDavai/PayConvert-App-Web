@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>PayConvert</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -63,10 +63,27 @@
                     </li>
                 </ul>
                 <!-- Left links -->
-                <a class="navbar-brand purplecolor fw-bold" href="#">Connexion</a>
-                <button type="button" class="btn me-3 purplecolorbg fw-bold mb-0">
-                  Sign up for free
-                </button>
+                @if (Route::has('login'))
+                    @auth
+                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+
+                            <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                            </x-dropdown-link>
+                        </form>
+                    @else
+                        <a class="navbar-brand purplecolor fw-bold" href="{{ route('login') }}">Connexion</a>
+
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="btn me-3 purplecolorbg fw-bold mb-0">S'enregistrer</a>
+                        @endif
+                    @endauth
+                </div>
+                @endif
                 </div>
             </div>
             <!-- Container wrapper -->
@@ -84,7 +101,7 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="text-container">
-                                <h1 class="fw-bold  pb-3"><span class="primarycolor bold">Convertissez vos cartes Paysafecard</span> <span class="secondarycolor">en argent Paypal<span></h1>
+                                <h1 class="fw-bold  pb-3"><span class="primarycolor bold">Convertissez vos cartes Paysafecard</span> <span class="secondarycolor">en argent PayPal<span></h1>
                                     <button type="button" class="btn rounded-pill btn-SecondaryColor fw-bold text-white pe-4">
                                         <span class="btn-label nobg ms-2"><i class="fas fa-money-bill-wave"></i> </span>Convertissez dès maintenant</button>
                             </div> <!-- end of text-container -->
@@ -135,7 +152,7 @@
                                         <img class="card-image cardimg" src="storage/images/rush.png" alt="alternative">
                                     </div>
                                     <h4 class="card-title secondarycolor fw-bold">Service ultra rapide 24H</h4>
-                                    <p class="card-text-color">Vos fonds seront transferés automatiquement en 24H maximum sur votre compte Paypal</p>
+                                    <p class="card-text-color">Vos fonds seront transferés automatiquement en 24H maximum sur votre compte PayPal</p>
                                     <div class="color-bar-end" id="color-bar-2"></div>
                                 </div>
                             </div>
@@ -147,8 +164,8 @@
                                     <div class="circle-image mt-4" id="circleimg-card-3">
                                         <img class="card-image cardimg" id="cardimg-3" src="storage/images/aide.png" alt="alternative">
                                     </div>
-                                    <h4 class="card-title secondarycolor fw-bold">Service ultra rapide 24H</h4>
-                                    <p class="card-text-color">Vos fonds seront transferés automatiquement en 24H maximum sur votre compte Paypal</p>
+                                    <h4 class="card-title secondarycolor fw-bold">Service assistance 24H</h4>
+                                    <p class="card-text-color">En cas de problème l'assistance vous soutiendra en moins de 24 H</p>
                                     <div class="color-bar-end" id="color-bar-3"></div>
                                 </div>
                             </div>
@@ -171,7 +188,7 @@
 <footer class="text-center text-lg-start text-muted" id="footer">
     <!-- Section: Social media -->
     <section
-      class="d-flex justify-content-center justify-content-lg-between p-4"
+      class="d-flex justify-content-center justify-content-lg-between p-4 "
     >
 
     
@@ -180,18 +197,17 @@
   
     <!-- Section: Links  -->
     <section class="">
-      <div class="container text-center text-md-start mt-5">
+      <div class="container text-center text-md-start mt-13">
         <!-- Grid row -->
-        <div class="row mt-3">
+        <div class="row mt-3 align-items-end text-dark">
           <!-- Grid column -->
           <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4 text-center">
             <!-- Content -->
             <h6 class="text-uppercase fw-bold mb-4">
-              <i class="fas fa-gem me-3"></i>Company name
+                <i class="fas fa-credit-card me-2"></i>PayConvert
             </h6>
             <p>
-              Here you can use rows and columns to organize your footer content. Lorem ipsum
-              dolor sit amet, consectetur adipisicing elit.
+                PayConvert est un service fiable, rapide et sécurisé de convertissement  de cartes PaySafeCard en argent PayPal.
             </p>
           </div>
           <!-- Grid column -->
@@ -200,22 +216,22 @@
          
   
           <!-- Grid column -->
-          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 text-center">
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 text-center mt-10">
             <!-- Links -->
             <h6 class="text-uppercase fw-bold mb-4">
               Contact
             </h6>
-            <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
+            <p><i class="fas fa-home me-3"></i>Le Puy-en-Velay, FR</p>
             <p>
               <i class="fas fa-envelope me-3"></i>
-              info@example.com
+              Contact@PayConvert.com
             </p>
-            <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-            <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+            <p><i class="fas fa-phone me-3"></i> + 33 04 71 09 90 80</p>
+            <!--<p><i class="fas fa-print me-3"></i> Null</p>-->
           </div>
 
         <!-- Section: Social media -->
-        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 d-flex align-items-center">        <!-- Facebook -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 d-flex align-items-center pb-5">        <!-- Facebook -->
         <a class="btn btn-dark btn-outline-light border-1 border-dark btn-floating m-1" href="#!" role="button"
           ><i class="fab fa-facebook-f"></i
         ></a>
@@ -245,37 +261,13 @@
     <!-- Section: Links  -->
   
     <!-- Copyright -->
-    <div class="text-center p-4">
+    <div class="text-center p-4 text-dark">
       © 2021 Copyright:
       <a class="text-reset fw-bold" href="https://PayConvert.com/">PayConvert.com</a>
     </div>
     <!-- Copyright -->
   </footer>
   <!-- Footer -->
-        
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
            
     </body>
 </html>
