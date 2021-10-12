@@ -44,7 +44,7 @@
                 <!-- Navbar brand -->
                 <a class="navbar-brand mt-2 mt-lg-0 px-4" href="#">
                     <img
-                    src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png"
+                    src="storage/images/logoPSC.svg"
                     height="15"
                     alt=""
                     loading="lazy"
@@ -116,7 +116,7 @@
             </div>
         </header>
 
-        <div class="section md-padding bg-white mt-3 anchor">
+        <div class="section md-padding bg-white mt-5 anchor" id="service-bg">
 
             <!-- Container -->
             <div class="container">

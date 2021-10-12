@@ -28806,9 +28806,19 @@ textarea.form-control-lg {
 
   /* Header */
   .header {
-    background: url(/images/BackgroundWebF.jpg?056600f69a77379ab9a76746d286b05a) center center no-repeat;
+    background: url(/images/BackgroundWeb.svg?6db8b1800f71e8796ad0ac84a35e259c) center center no-repeat;
     background-size: cover;
     height: 736px;
+  }
+
+  #service-bg {
+    background: url(/images/formes.svg?548622b5836ba3155745dc6a102d199b) center center no-repeat;
+    background-position: top;
+  }
+
+  #footer {
+    background: url(/images/footer.svg?9af135f8c27b4f003b478d2a769fa346) center center no-repeat;
+    background-size: cover;
   }
 
   .header .header-content {
@@ -29090,6 +29100,12 @@ textarea.form-control-lg {
 
 .mt-10 {
   margin-top: 10em;
+}
+
+#service-bg {
+  background: url(/images/formes.svg?548622b5836ba3155745dc6a102d199b) center center no-repeat;
+  background-size: 80%;
+  background-position: top;
 }
 
 
