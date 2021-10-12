@@ -116,7 +116,7 @@
             </div>
         </header>
 
-        <div class="section md-padding bg-white mt-3 pb-5 anchor">
+        <div class="section md-padding bg-white mt-3 anchor">
 
             <!-- Container -->
             <div class="container">
