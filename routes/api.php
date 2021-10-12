@@ -15,14 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/register', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
+Route::prefix('v1/users')->group(function () { // Collection user
+    Route::post('/post', [AuthController::class, 'register']); // Créer un compte
+    Route::post('/login', [AuthController::class, 'login']); // Connexion a un compte
 
-
-Route::group(['middleware' => ['auth:sanctum']], function() {
-    Route::post('/uploadimg', [AuthController::class, 'uploadImg']);
-    Route::post('/logout', [AuthController::class, 'logout']);
+    Route::group(['middleware' => ['auth:sanctum']], function() { // Route accessible que si user est co via bearer token
+        Route::post('/logout', [AuthController::class, 'logout']); // Deconnection d'un compte
+    });
 });
+
+
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

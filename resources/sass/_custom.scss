@@ -86,10 +86,6 @@
   background: #f3f4f6 !important;
 }
 
-.card {
-  border-radius: 0.475rem;
-  border: 0;
-}
 
 .card-footer {
   padding: 0.75rem 1.25rem;
@@ -107,4 +103,357 @@
 
 .small {
   font-size: .875rem !important;
+}
+
+.header {
+	background-color: #fff;
+}
+
+.header .header-content {
+	padding-top: 8rem;
+	padding-bottom: 4rem;
+	text-align: center;
+}
+
+.header .text-container {
+	margin-bottom: 4rem;
+}
+
+.header h1 {
+	margin-bottom: 1.125rem;
+	font-size: 2.5rem;
+	line-height: 3.125rem;
+}
+
+.header .p-large {
+	margin-bottom: 1.875rem;
+}
+
+@media (min-width: 768px) {  
+  /* General Styles */
+	.p-heading {
+		width: 85%;
+		margin-right: auto;
+		margin-left: auto;
+	}
+	/* end of general styles */
+  	/* Header */
+	.header .header-content {
+		padding-top: 10.5rem;
+	}
+
+	.header h1 {
+		font-size: 3rem;
+		line-height: 3.5rem;
+	}
+	/* end of header */
+
+}
+
+@media (min-width: 992px) {
+
+
+	/* Navigation */
+	.custom-nav {
+		padding: 2.125rem 1.5rem 2.125rem 2rem;
+		box-shadow: none;
+        background: transparent;
+	}
+
+  /* Services */
+	.cards-1 .card {
+		display: inline-block;
+		max-width: 17.125rem;
+		vertical-align: top;
+	}
+
+	.cards-1 .col-lg-12 div.card:nth-child(3n+2) {
+		margin-right: 2rem;
+		margin-left: 2rem;
+	}
+	/* end of services */
+
+  	/* General Styles */
+	.p-heading {
+		width: 65%;
+	}
+
+  /* Header */
+	.header {
+    background: url(../../public/storage/images/BackgroundWebF.jpg) center center no-repeat;
+		background-size: cover; 
+    height: 736px;
+	}
+
+	.header .header-content {
+		padding-top: 11.5rem;
+		text-align: left;
+	}
+
+	.header .text-container {
+		margin-top: 3rem;
+		margin-bottom: 0;
+	}
+	/* end of header */
+}
+
+@media (min-width: 1200px) {
+  
+		/* Navigation */
+		.custom-nav {
+			padding: 2.125rem 5rem 2.125rem 5rem;
+		}
+		/* end of navigation */
+
+  	/* Services */
+	.cards-1 .card {
+		max-width: 21rem;
+	}
+
+	.cards-1 .col-lg-12 div.card:nth-child(3n+2) {
+		margin-right: 2.875rem;
+		margin-left: 2.875rem;
+	}
+	/* end of services */
+  
+  	/* General Styles */
+	.p-heading {
+		width: 55%;
+	}
+
+	/* Header */
+	.header .header-content {
+		padding-top: 12.5rem;
+	}
+
+	.header .text-container {
+		margin-top: 5.375rem;
+		margin-left: 1rem;
+		margin-right: 2rem;
+	}
+
+	.header .image-container {
+		margin-left: 2rem;
+		margin-right: 1rem;
+	}
+	/* end of header */
+}
+
+.primarycolor {
+  color: #9395CE;
+}
+
+.secondarycolor {
+  color: #3F3D56;
+}
+
+.thirdcolor {
+  background-color: #D6D7EC;
+}
+
+.p-heading {
+	margin-bottom: 3.875rem;
+}
+
+.header .p-large {
+	margin-bottom: 1.875rem;
+}
+
+.p-large {
+	font: 400 1rem/1.5rem "Raleway", sans-serif;
+}
+
+/************************/
+/*     06. Services     */
+/************************/
+.cards-1 {
+	padding-top: 4rem;
+	padding-bottom: 1.625rem;
+	text-align: center;
+}
+
+.cards-1 h2 {
+	margin-bottom: 1rem;
+}
+
+.cards-1 .card {
+	max-width: 21rem;
+	margin-right: auto;
+	margin-bottom: 4.5rem;
+	margin-left: auto;
+	padding: 3.25rem 2rem 2rem 2rem;
+  	box-shadow: -5px 8px 10px 10px rgba(147, 149, 206, 0.25);
+	background: transparent;
+  border: 0px;
+}
+
+.cards-1 .card-image {
+	width: 6rem;
+	height: 6rem;
+	margin-right: auto;
+	margin-bottom: 2rem;
+	margin-left: auto;
+  border-radius: 50%;
+}
+
+.cards-1 .card-title {
+	margin-bottom: 0.875rem;
+}
+
+.cards-1 .card-body {
+	padding: 0;
+}
+
+.circle-image {
+	background-color:rgba(147.00000643730164, 149.00000631809235, 206.0000029206276, 0.2);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    margin: auto;
+	margin-bottom: 2em;
+}
+
+.cardimg {
+	width: 50px;
+	height: 50px;
+	margin: auto;
+}
+
+.border0 {
+  border: 0px;
+}
+
+.shadow-cards {
+  box-shadow: 0px 8px 10px 11px rgb(147 149 206 / 7%);
+}
+
+.card-title {
+	font-size: 18px;
+}
+
+.color-bar-end {
+	background: linear-gradient(180deg, rgba(147, 149, 206, 0.38) 13.89%, #9395CE 100%);
+	border-radius: 0px 0px 16px 16px;
+	height: 15px;
+	width: -webkit-fill-available;
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+}
+
+
+.card-width-radius {
+	height: 320px;
+	border-radius: 16px 16px 16px 16px;
+}
+
+#middle-card {
+	margin-top: 70px;
+}
+
+.card-text-color {
+	color: #7b7c91
+}
+
+.custom-nav {
+	transition: all 0.2s;
+}
+
+.purplecolor {
+	color: #9395CE !important;
+}
+
+.purplecolorbg {
+	background-color: #9395CE;
+}
+
+.purplecolorbg:hover {
+	background-color: #D6D7EC;
+}
+
+.navbar-collaps {
+	padding: 0.5rem 5rem 0.5rem 5rem;
+}
+
+.shadow-navs {
+	box-shadow: 0px 0px 0px 11px rgb(147 149 206 / 7%);
+  }
+
+#circleimg-card-1 {
+	background: rgba(97, 166, 205, 0.25);
+}
+
+#color-bar-1 {
+	background: linear-gradient(to right, rgba(9, 63, 255, 0.74) 12.85%, rgba(61, 170, 204, 0.642361) 63.89%, rgba(118, 213, 219, 0.58) 100%);
+}
+
+#circleimg-card-2 {
+	background: rgba(227, 180, 89, 0.25);
+}
+
+#color-bar-2 {
+	background: linear-gradient(to right, #FF4F37 21.7%, rgba(252, 115, 25, 0.676856) 60.76%, rgba(255, 184, 0, 0.2) 100%);
+}
+
+#circleimg-card-3 {
+	background: rgba(147.00000643730164, 149.00000631809235, 206.0000029206276, 0.25);
+}
+
+#color-bar-3 {
+	background: linear-gradient(to right, #8C73ED 1.39%, #8267EB 1.4%, #8C73ED 38.37%, rgba(140, 115, 237, 0.19) 100%);
+}
+
+#cardimg-3 {
+	width: 70px;
+	height: 70px;
+	margin: auto;
+}
+
+#footer {
+    background: url(../../public/storage/images/BackgroundWebF.jpg) center center no-repeat;
+    background-size: cover;
+}
+
+.thing-with-anchor:before { 
+	content: ''; 
+	display: block; 
+	position: relative; 
+	width: 0; 
+	height: 2em; 
+	margin-top: -2em 
+}
+
+.zoom {
+	transition: transform .2s; /* Animation */ 	
+  }
+  
+  .zoom:hover {
+	transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
+  
+  .btn-label {
+	position: relative;
+	left: -12px;
+	display: inline-block;
+	padding: 6px 12px;
+	background: rgba(0, 0, 0, 0.15);
+	border-radius: 3px 0 0 3px;
+}
+
+.btn-labeled {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.btn {
+	margin-bottom: 10px;
+}
+
+.btn-SecondaryColor {
+	background-color: #9395CE;
+}
+
+.nobg {
+	background: rgba(0,0,0,0);
 }
