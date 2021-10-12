@@ -180,10 +180,21 @@
 
   /* Header */
 	.header {
-    background: url(../../public/storage/images/BackgroundWebF.jpg) center center no-repeat;
+    background: url(../../public/storage/images/BackgroundWeb.svg) center center no-repeat;
 		background-size: cover; 
     height: 736px;
 	}
+
+	#service-bg {
+		background: url(../../public/storage/images/formes.svg) center center no-repeat;
+		background-position: top;
+	}
+
+	#footer {
+		background: url(../../public/storage/images/footer.svg) center center no-repeat;
+		background-size: cover;
+	}
+	
 
 	.header .header-content {
 		padding-top: 11.5rem;
@@ -464,4 +475,10 @@
 
 .mt-10 {
 	margin-top: 10em;
+}
+
+#service-bg {
+	background: url(../../public/storage/images/formes.svg) center center no-repeat;
+    background-size: 80%;
+    background-position: top;
 }
