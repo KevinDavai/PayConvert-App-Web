@@ -51,15 +51,15 @@
                     />
                 </a>
                 <!-- Left links -->
-                <ul class="navbar-nav mb-2 mb-lg-0 pe-5">
+                <ul class="navbar-nav mb-2 mb-lg-0 pe-5" id="nav">
                     <li class="nav-item px-2">
-                    <a class="navbar-brand fw-bold" href="#header">Accueil</a>
+                    <a class="navbar-brand fw-bold active" aria-current="page" href="#header">Accueil</a>
                     </li>
                     <li class="nav-item px-2">
                     <a class="navbar-brand fw-bold" href="#service">A Propos</a>
                     </li>
                     <li class="nav-item px-2">
-                    <a class="navbar-brand fw-bold" href="#">Contact</a>
+                    <a class="navbar-brand fw-bold" href="#footer">Contact</a>
                     </li>
                 </ul>
                 <!-- Left links -->
@@ -76,7 +76,7 @@
                             </x-dropdown-link>
                         </form>
                     @else
-                        <a class="navbar-brand purplecolor fw-bold" href="{{ route('login') }}">Connexion</a>
+                        <a class="navbar-brand purplecolor fw-bold" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Connexion</a>
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="btn me-3 purplecolorbg fw-bold mb-0">S'enregistrer</a>
@@ -255,7 +255,7 @@
   
           <!-- Grid column -->
         </div>
-        <!-- Grid row -->
+        <!-- Grid rows -->
       </div>
     </section>
     <!-- Section: Links  -->
@@ -268,7 +268,50 @@
     <!-- Copyright -->
   </footer>
   <!-- Footer -->
-           
+
+<!-- Button trigger modal -->
+<button
+  type="button"
+  class="btn btn-primary"
+  data-mdb-toggle="modal"
+  data-mdb-target="#exampleModal"
+>
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-mdb-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">...</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    <script src="{{ asset('js/app.js') }}"></script>
+    
+
     </body>
 </html>
 
@@ -283,4 +326,17 @@
           } 
       });
     }); 
+
+    // Get the container element
+    var textItems = document.getElementsByClassName("navbar-brand");
+
+    // Loop through the buttons and add the active class to the current/clicked button
+    for (var i = 0; i < textItems.length; i++) {
+        textItems[i].addEventListener("click", function() {
+            console.log("sa");
+        var current = document.getElementsByClassName("active");
+        current[0].className = current[0].className.replace(" active", "");
+        this.className += " active";
+    });
+    }
 </script>

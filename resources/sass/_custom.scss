@@ -482,3 +482,10 @@
     background-size: 80%;
     background-position: top;
 }
+
+@media (min-width: 992px) {
+	.nav-item .navbar-brand:hover, .nav-item .navbar-brand.active {
+		color: #9395CE;
+		/* opacity: 1; */
+	}
+}
