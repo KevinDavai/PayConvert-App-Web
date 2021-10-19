@@ -28875,15 +28875,15 @@ textarea.form-control-lg {
   /* end of header */
 }
 .primarycolor {
-  color: #9395CE;
+  color: #9395ce;
 }
 
 .secondarycolor {
-  color: #3F3D56;
+  color: #3f3d56;
 }
 
 .thirdcolor {
-  background-color: #D6D7EC;
+  background-color: #d6d7ec;
 }
 
 .p-heading {
@@ -28968,7 +28968,7 @@ textarea.form-control-lg {
 }
 
 .color-bar-end {
-  background: linear-gradient(180deg, rgba(147, 149, 206, 0.38) 13.89%, #9395CE 100%);
+  background: linear-gradient(180deg, rgba(147, 149, 206, 0.38) 13.89%, #9395ce 100%);
   border-radius: 0px 0px 16px 16px;
   height: 15px;
   width: -webkit-fill-available;
@@ -28995,15 +28995,15 @@ textarea.form-control-lg {
 }
 
 .purplecolor {
-  color: #9395CE !important;
+  color: #9395ce !important;
 }
 
 .purplecolorbg {
-  background-color: #9395CE;
+  background-color: #9395ce;
 }
 
 .purplecolorbg:hover {
-  background-color: #D6D7EC;
+  background-color: #d6d7ec;
 }
 
 .navbar-collaps {
@@ -29027,7 +29027,7 @@ textarea.form-control-lg {
 }
 
 #color-bar-2 {
-  background: linear-gradient(to right, #FF4F37 21.7%, rgba(252, 115, 25, 0.676856) 60.76%, rgba(255, 184, 0, 0.2) 100%);
+  background: linear-gradient(to right, #ff4f37 21.7%, rgba(252, 115, 25, 0.676856) 60.76%, rgba(255, 184, 0, 0.2) 100%);
 }
 
 #circleimg-card-3 {
@@ -29035,7 +29035,7 @@ textarea.form-control-lg {
 }
 
 #color-bar-3 {
-  background: linear-gradient(to right, #8C73ED 1.39%, #8267EB 1.4%, #8C73ED 38.37%, rgba(140, 115, 237, 0.19) 100%);
+  background: linear-gradient(to right, #8c73ed 1.39%, #8267eb 1.4%, #8c73ed 38.37%, rgba(140, 115, 237, 0.19) 100%);
 }
 
 #cardimg-3 {
@@ -29087,7 +29087,7 @@ textarea.form-control-lg {
 }
 
 .btn-SecondaryColor {
-  background-color: #9395CE;
+  background-color: #9395ce;
 }
 
 .nobg {
@@ -29109,10 +29109,18 @@ textarea.form-control-lg {
 }
 
 @media (min-width: 992px) {
-  .nav-item .navbar-brand:hover, .nav-item .navbar-brand.active {
-    color: #9395CE;
+  .nav-item .navbar-brand:hover,
+.nav-item .navbar-brand.active {
+    color: #9395ce;
     /* opacity: 1; */
   }
+}
+.dropdown-menu {
+  background-color: #d6d7ec;
+  right: auto;
+  left: 50%;
+  transform: translate(-35%, 0);
+  width: auto;
 }
 
 

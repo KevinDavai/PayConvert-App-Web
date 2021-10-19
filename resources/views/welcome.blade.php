@@ -44,7 +44,7 @@
                 <!-- Navbar brand -->
                 <a class="navbar-brand mt-2 mt-lg-0 px-4" href="#">
                     <img
-                    src="storage/images/logoPSC.svg"
+                    src="storage/images/logoPSCs.svg"
                     height="15"
                     alt=""
                     loading="lazy"
@@ -65,18 +65,45 @@
                 <!-- Left links -->
                 @if (Route::has('login'))
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
+                    <div class="container-fluid">
+                        <ul class="navbar-nav justify-content-end">
+                            <!-- Avatar -->
+                            <li class="nav-item dropdown ">
+                                <a
+                                class="nav-link dropdown-toggle d-flex align-items-center"
+                                href="#"
+                                id="navbarDropdownMenuLink"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                                >
+                                <img
+                                    src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg"
+                                    class="rounded-circle"
+                                    height="22"
+                                    alt=""
+                                    loading="lazy"
+                                />
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                                <li>
+                                    <a class="dropdown-item" href="#">Convertir</a>
+                                </li>
+                                <li>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                         @csrf
+                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">Deconnexion</a>
+                                    </form>
+                                    
+                                </li>
+                                </ul>
+                            </li>
+                            </ul>
+                    </div>
+                            <!-- Right elements -->
+                        <!--<a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>-->
                     @else
-                        <a class="navbar-brand purplecolor fw-bold" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Connexion</a>
+                        <a class="navbar-brand purplecolor fw-bold" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Connexion</a>
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="btn me-3 purplecolorbg fw-bold mb-0">S'enregistrer</a>
@@ -270,25 +297,73 @@
   <!-- Footer -->
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Connexion</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
+            
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                        @foreach ($errors->all() as $error)
+                             <strong>{{ $error }}</strong>
+                        @endforeach
+                </div>
+            @endif
+
+
+            <!-- Email Address -->
+            <div class="form-group">
+                <x-label for="email" :value="__('Email')" />
+
+                <input id="email" type="email" class="block mt-1 w-full form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+            </div>
+
+            <!-- Password -->
+            <div class="mt-4">
+                <x-label for="password" :value="__('Password')" />
+
+                <input id="password" type="password" class="block mt-1 w-full form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+            </div>
+
+            <!-- Remember Me -->
+            <div class="block mt-4">
+                <label for="remember_me" class="inline-flex items-center">
+                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
+                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                </label>
+            </div>
+
+            <div class="flex items-center justify-end mt-4">
+
+                <x-button class="ml-3 btn btn-secondary btn-SecondaryColor">
+                    {{ __('Log in') }}
+                </x-button>
+            </div>
+        </form>
       </div>
     </div>
   </div>
 </div>
-    
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    <script src="{{ asset('js/app.js') }}"></script>
+
+
+@if($errors->has('email') || $errors->has('password'))
+    <script>
+    $(function() {
+        $('#loginModal').modal('show');
+    });
+    </script>
+@endif
 
     </body>
 </html>
@@ -315,6 +390,6 @@
         var current = document.getElementsByClassName("active");
         current[0].className = current[0].className.replace(" active", "");
         this.className += " active";
-    });
+        });
     }
 </script>
