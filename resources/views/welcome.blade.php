@@ -23,6 +23,8 @@
         </style>
     </head>
     <body class="antialiased bg-white">
+
+
         <nav id="navbar_top" class="navbar navbar-light top-0 z-50 fixed navbar-expand-lg custom-nav fixed-top">
             <!-- Container wrapper -->
             <div class="container-fluid">
@@ -77,13 +79,7 @@
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false"
                                 >
-                                <img
-                                    src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg"
-                                    class="rounded-circle"
-                                    height="22"
-                                    alt=""
-                                    loading="lazy"
-                                />
+                                <img class="rounded-circle" alt="" loading="lazy" src="storage/upload/avatars/{{ Auth::user()->avatar }}" style="height:32px;">
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                 <li>
@@ -129,8 +125,15 @@
                         <div class="col-lg-6">
                             <div class="text-container">
                                 <h1 class="fw-bold  pb-3"><span class="primarycolor bold">Convertissez vos cartes Paysafecard</span> <span class="secondarycolor">en argent PayPal<span></h1>
-                                    <button type="button" class="btn rounded-pill btn-SecondaryColor fw-bold text-white pe-4">
-                                        <span class="btn-label nobg ms-2"><i class="fas fa-money-bill-wave"></i> </span>Convertissez dès maintenant</button>
+                                    
+                                    @auth
+                                        <a href="/home"type="button" class="btn rounded-pill btn-SecondaryColor fw-bold text-white pe-4">
+                                        <span class="btn-label nobg ms-2"><i class="fas fa-money-bill-wave"></i> </span>Convertissez dès maintenant</a>
+                                        @else
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" type="button" class="btn rounded-pill btn-SecondaryColor fw-bold text-white pe-4">
+                                        <span class="btn-label nobg ms-2"><i class="fas fa-money-bill-wave"></i> </span>Convertissez dès maintenant</a>
+                                    @endauth
+                                
                             </div> <!-- end of text-container -->
                         </div> <!-- end of col -->
                         <div class="col-lg-6">
@@ -350,6 +353,7 @@
       </div>
     </div>
   </div>
+  
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
