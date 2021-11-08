@@ -77,22 +77,16 @@
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false"
                                 >
-                                <img
-                                    src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg"
-                                    class="rounded-circle"
-                                    height="22"
-                                    alt=""
-                                    loading="lazy"
-                                />
+                                <img class="rounded-circle" alt="" loading="lazy" src="storage/upload/avatars/{{ Auth::user()->avatar }}" style="height:32px;">
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                 <li>
-                                    <a class="dropdown-item" href="#">Convertir</a>
+                                    <a class="dropdown-item" href="#"><i class="fas fa-dollar-sign"></i>Convertir</a>
                                 </li>
                                 <li>
                                     <form method="POST" action="{{ route('logout') }}">
                                          @csrf
-                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">Deconnexion</a>
+                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();"><i class="fas fa-sign-out-alt"></i>Deconnexion</a>
                                     </form>
                                     
                                 </li>
@@ -106,7 +100,7 @@
                         <a class="navbar-brand purplecolor fw-bold" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Connexion</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="btn me-3 purplecolorbg fw-bold mb-0">S'enregistrer</a>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" class="btn me-3 purplecolorbg fw-bold mb-0">S'enregistrer</a>
                         @endif
                     @endauth
                 </div>
@@ -351,6 +345,70 @@
     </div>
   </div>
 </div>
+
+<!-- Modal Register -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Connexion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="{{ route('register') }}">
+            @csrf
+            
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                        @foreach ($errors->all() as $error)
+                             <strong>{{ $error }}</strong>
+                        @endforeach
+                </div>
+            @endif
+
+            <!-- Name -->
+            <div class="form-group">
+                <x-label for="name" :value="__('Name')" />
+
+                <input id="name" class="block mt-1 w-full form-control" type="text" name="name" :value="old('name')" required autofocus />
+            </div>
+
+            <!-- Email Address -->
+            <div class="form-group">
+                <x-label for="email" :value="__('Email')" />
+
+                <input id="email" type="email" class="block mt-1 w-full form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+                <x-label for="password" :value="__('Password')" />
+
+                <input id="password" type="password" class="block mt-1 w-full form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="form-group">
+                <x-label for="password_confirmation" :value="__('Confirm Password')" />
+
+                <input id="password_confirmation" class="block mt-1 w-full form-control"
+                                type="password"
+                                name="password_confirmation" required />
+            </div>
+
+            <!-- Register button -->
+            <div class="flex items-center justify-end mt-4">
+                <x-button class="ml-3 btn btn-secondary btn-SecondaryColor">
+                    {{ __('Register') }}
+                </x-button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
