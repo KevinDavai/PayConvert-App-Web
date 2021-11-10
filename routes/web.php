@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController as AdminAdminController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\User\UserController;
 use Inertia\Inertia;
-
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Admin\AdminController;
+use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
+use App\Http\Controllers\Admin\AdminController as AdminAdminController;
+use App\Http\Controllers\popupRedirect;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,11 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
+
+Route::get('/login', [popupRedirect::class, 'index'])
+    ->middleware('guest')
+    ->name('login');
 
 Route::get('dashboard', [UserController::class, 'index'])->name('dashboard');
 Route::post('editavatar', [UserController::class, 'update_avatar']);
