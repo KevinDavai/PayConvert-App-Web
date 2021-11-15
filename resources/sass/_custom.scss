@@ -497,6 +497,10 @@
     background-color: #9395ce;
 }
 
+.btn-SecondaryColor:hover {
+    background-color: #7a7cb3;
+}
+
 .nobg {
     background: rgba(0, 0, 0, 0);
 }
@@ -532,4 +536,35 @@
     -o-transform: translate(-35%, 0);
     transform: translate(-35%, 0);
     width: auto;
+}
+
+/*
+User Dashboard
+*/
+
+.sidebar-user {
+    padding: 1.5rem, 1rem, 1rem;
+    color: #28304e;
+    text-align: center;
+}
+
+.sidebar-user img {
+    width: 64px;
+    height: 64px;
+}
+
+.whiteimportant {
+    color: white !important;
+}
+
+.bg-orangeMe {
+    background-color: #ffc107 !important;
+}
+
+.bg-blueMe {
+    background-color: #007bff;
+}
+
+.mt-11-px {
+    margin-top: 11px;
 }

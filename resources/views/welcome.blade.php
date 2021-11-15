@@ -83,7 +83,11 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                 <li>
+<<<<<<< HEAD
                                     <a class="dropdown-item" href="#"><i class="fas fa-dollar-sign"></i>Convertir</a>
+=======
+                                    <a class="dropdown-item" href="/dashboard">Convertir</a>
+>>>>>>> a2f0421de03d57f7d001d98ec5c583900adab99a
                                 </li>
                                 <li>
                                     <form method="POST" action="{{ route('logout') }}">
@@ -127,7 +131,7 @@
                                 <h1 class="fw-bold  pb-3"><span class="primarycolor bold">Convertissez vos cartes Paysafecard</span> <span class="secondarycolor">en argent PayPal<span></h1>
                                     
                                     @auth
-                                        <a href="/home"type="button" class="btn rounded-pill btn-SecondaryColor fw-bold text-white pe-4">
+                                        <a href="/dashboard"type="button" class="btn rounded-pill btn-SecondaryColor fw-bold text-white pe-4">
                                         <span class="btn-label nobg ms-2"><i class="fas fa-money-bill-wave"></i> </span>Convertissez dès maintenant</a>
                                         @else
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" type="button" class="btn rounded-pill btn-SecondaryColor fw-bold text-white pe-4">
@@ -229,7 +233,7 @@
     <section class="">
       <div class="container text-center text-md-start mt-13">
         <!-- Grid row -->
-        <div class="row mt-3 align-items-end text-dark">
+        <div class="row mt-10 align-items-end text-dark">
           <!-- Grid column -->
           <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4 text-center">
             <!-- Content -->
@@ -428,9 +432,21 @@
 @if($errors->has('email') || $errors->has('password'))
     <script>
     $(function() {
+                    console.log("sa");
+
         $('#loginModal').modal('show');
     });
     </script>
+@endif
+
+@if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
+<script>
+    $(function() {
+                    console.log("sa");
+
+        $('#loginModal').modal('show');
+    });
+</script>
 @endif
 
     </body>
