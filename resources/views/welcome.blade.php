@@ -83,11 +83,7 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                 <li>
-<<<<<<< HEAD
                                     <a class="dropdown-item" href="#"><i class="fas fa-dollar-sign"></i>Convertir</a>
-=======
-                                    <a class="dropdown-item" href="/dashboard">Convertir</a>
->>>>>>> a2f0421de03d57f7d001d98ec5c583900adab99a
                                 </li>
                                 <li>
                                     <form method="POST" action="{{ route('logout') }}">
