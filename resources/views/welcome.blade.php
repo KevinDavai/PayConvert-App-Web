@@ -23,6 +23,8 @@
         </style>
     </head>
     <body class="antialiased bg-white">
+
+
         <nav id="navbar_top" class="navbar navbar-light top-0 z-50 fixed navbar-expand-lg custom-nav fixed-top">
             <!-- Container wrapper -->
             <div class="container-fluid">
@@ -123,8 +125,15 @@
                         <div class="col-lg-6">
                             <div class="text-container">
                                 <h1 class="fw-bold  pb-3"><span class="primarycolor bold">Convertissez vos cartes Paysafecard</span> <span class="secondarycolor">en argent PayPal<span></h1>
-                                    <button type="button" class="btn rounded-pill btn-SecondaryColor fw-bold text-white pe-4">
-                                        <span class="btn-label nobg ms-2"><i class="fas fa-money-bill-wave"></i> </span>Convertissez dès maintenant</button>
+                                    
+                                    @auth
+                                        <a href="/home"type="button" class="btn rounded-pill btn-SecondaryColor fw-bold text-white pe-4">
+                                        <span class="btn-label nobg ms-2"><i class="fas fa-money-bill-wave"></i> </span>Convertissez dès maintenant</a>
+                                        @else
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" type="button" class="btn rounded-pill btn-SecondaryColor fw-bold text-white pe-4">
+                                        <span class="btn-label nobg ms-2"><i class="fas fa-money-bill-wave"></i> </span>Convertissez dès maintenant</a>
+                                    @endauth
+                                
                             </div> <!-- end of text-container -->
                         </div> <!-- end of col -->
                         <div class="col-lg-6">
@@ -344,6 +353,7 @@
       </div>
     </div>
   </div>
+  
 </div>
 
 <!-- Modal Register -->

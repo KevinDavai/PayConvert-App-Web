@@ -1,5 +1,5 @@
 <template>
-    <div class="dark-mode">
+
 <div class="wrapper">
 
   <!-- Preloader -->
@@ -37,13 +37,13 @@
   <!-- Main Footer -->
     <Footer />
 </div>
-</div>
+
 </template>
 
 <script>
-    import Footer from '@/Components/Admin/Footer'
-    import NavBar from '@/Components/Admin/NavBar'
-    import SideBar from '@/Components/Admin/SideBar'
+    import Footer from '@/Components/User/Footer'
+    import NavBar from '@/Components/User/NavBar'
+    import SideBar from '@/Components/User/SideBar'
     export default {
         components: {
           Footer,

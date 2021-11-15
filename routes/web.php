@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController as AdminAdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\User\UserController;
 use Inertia\Inertia;
 
 
@@ -21,8 +22,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('dashboard', [UserController::class, 'index'])->name('dashboard');
+Route::post('editavatar', [UserController::class, 'update_avatar']);
 
-require __DIR__.'/auth.php';
+
+require __DIR__ . '/auth.php';
