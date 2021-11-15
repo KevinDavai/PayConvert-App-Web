@@ -29157,4 +29157,12 @@ User Dashboard
   margin-top: 11px;
 }
 
+.btn-edit {
+  margin-bottom: 0px;
+  height: 58px;
+  width: 58px;
+  background-color: #3490dc !important;
+  border: #3490dc !important;
+}
+
 

@@ -28,6 +28,7 @@ Route::get('/login', [popupRedirect::class, 'index'])
     ->name('login');
 
 Route::get('dashboard', [UserController::class, 'index'])->name('dashboard');
+Route::get('profil', [UserController::class, 'profil_setting'])->name('profil_setting');
 Route::post('editavatar', [UserController::class, 'update_avatar']);
 
 

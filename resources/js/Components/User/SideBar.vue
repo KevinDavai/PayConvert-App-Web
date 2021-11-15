@@ -25,12 +25,11 @@
                with font-awesome or any other icon font library -->
                          <li class="nav-header">PRINCIPAL</li>
 
-          <li class="nav-item menu-open">
+          <li class="nav-item">
             <inertia-link :href="route('dashboard')" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
-                <i class="right fas fa-angle-left"></i>
               </p>
             </inertia-link>
           </li>
@@ -42,6 +41,14 @@
               </p>
             </inertia-link> 
           </li>   
+          <li class="nav-item">
+            <inertia-link :href="route('profil_setting')" class="nav-link">
+              <i class="nav-icon fas fa-home"></i>
+              <p>
+                  Votre compte
+              </p>
+            </inertia-link> 
+          </li> 
           <li class="nav-header">SITE</li>
           <li class="nav-item">
             <a :href="route('home')" class="nav-link">
@@ -74,6 +81,7 @@ export default {
         csrf() {
             return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         },
+    }
 }
-}
+
 </script>
