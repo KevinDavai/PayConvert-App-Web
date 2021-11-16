@@ -18,6 +18,7 @@
         "alpinejs": "^3.0.6",
         "autoprefixer": "^10.3.4",
         "axios": "^0.21.4",
+        "jquery-ui": "^1.13.0",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.3.6",
@@ -36,6 +37,7 @@
         "@inertiajs/progress": "^0.2.6",
         "@tailwindcss/ui": "^0.7.2",
         "bootstrap": "^5.1.0",
+        "popper.js": "^1.16.1",
         "vue": "^3.2.9"
     }
 }
