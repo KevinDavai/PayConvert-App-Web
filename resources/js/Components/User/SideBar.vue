@@ -26,7 +26,7 @@
                          <li class="nav-header">PRINCIPAL</li>
 
           <li class="nav-item">
-            <inertia-link :href="route('dashboard')" class="nav-link active">
+            <inertia-link :href="route('dashboard')" class="nav-link" :class="urlPath == '/dashboard' ? 'active' : '' ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -34,7 +34,7 @@
             </inertia-link>
           </li>
           <li class="nav-item">
-            <inertia-link :href="route('dashboard')" class="nav-link">
+            <inertia-link :href="route('dashboard')" class="nav-link" :class="urlPath == '/convert' ? 'active' : '' ">
               <i class="nav-icon fas fa-home"></i>
               <p>
                   Convertir
@@ -42,7 +42,7 @@
             </inertia-link> 
           </li>   
           <li class="nav-item">
-            <inertia-link :href="route('profil_setting')" class="nav-link">
+            <inertia-link :href="route('profil_setting')" class="nav-link" :class="urlPath == '/profil' ? 'active' : '' ">
               <i class="nav-icon fas fa-home"></i>
               <p>
                   Votre compte
@@ -81,7 +81,12 @@ export default {
         csrf() {
             return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         },
-    }
+    },
+    data() {
+      return {
+        urlPath: location.pathname,
+      }
+    },
+    
 }
-
 </script>
