@@ -6,14 +6,20 @@
 
         <div class="container px-4">
             <div class="row gx-5">
-                <div class="col">
+                <div class="p-l-10px">
+                    <div class="title-section">
+                        <h3 class="title p-b-15px">Paramètres généraux</h3>
+                        <p class="description description-profil-color p-b-15px">Gérez les détails de votre compte que vous avez partagés avec PaySafeConverter, y compris votre nom, vos coordonnées et plus encore</p>
+                    </div>
+                </div>
+                <div class="col pb-5">
                     <form class="form-floating">
                         <input
                             type="text"
                             class="form-control form-control-lg"
                             id="floatingInputValue"
                             placeholder="example"
-                            :value="`${$page.props.user.name}`"
+                            :value="`${$page.props.user.username}`"
                             disabled=""
                         />
                         <label for="floatingInputValue">Nom d'utilisateur</label>
@@ -65,6 +71,19 @@
                         </button>
                     </div>
                 </div>
+
+                <div class="p-l-10px">
+                    <div class="title-section pt-5 pb-5">
+                        <h3 class="title p-b-15px">Mot de passe</h3>
+                        <p class="description description-profil-color p-b-15px">Pour votre sécurité, nous vous recommandons fortement de choisir un mot de passe unique que vous n'utilisez pour aucun autre compte en ligne.</p>
+                    </div>
+                </div>
+
+                <EditPasswordForm>
+                    
+                </EditPasswordForm>
+    
+                               
             </div>
         </div>
 
@@ -98,8 +117,9 @@
 import UserLayout from "@/Layouts/UserLayout";
 import EditMailForm from "@/components/EditMailForm";
 import EditPseudoForm from "@/components/EditPseudoForm";
+import EditPasswordForm from "@/components/EditPasswordForm";
     export default {
-        components: { UserLayout, EditMailForm, EditPseudoForm },
+        components: { UserLayout, EditMailForm, EditPseudoForm, EditPasswordForm },
     };
 
 </script>

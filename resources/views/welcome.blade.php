@@ -349,6 +349,10 @@
                 <x-button class="ml-3 btn btn-secondary btn-SecondaryColor">
                     {{ __('Log in') }}
                 </x-button>
+
+                <a href="{{ url('/auth/google/redirect') }}" style="margin-top: 20px;" class="btn btn-lg btn-success btn-block">
+                    <strong>Login With Google</strong>
+                </a> 
             </div>
         </form>
       </div>
@@ -379,17 +383,19 @@
 
             <!-- Name -->
             <div class="form-group">
-                <x-label for="name" :value="__('Name')" />
+                <x-label for="username" :value="__('Username')" />
 
-                <input id="name" class="block mt-1 w-full form-control" type="text" name="name" :value="old('name')" required autofocus />
+                <input id="username" class="block mt-1 w-full form-control" type="text" name="username" :value="old('username')" required autofocus />
             </div>
 
             <!-- Email Address -->
             <div class="form-group">
                 <x-label for="email" :value="__('Email')" />
-
-                <input id="email" type="email" class="block mt-1 w-full form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
+                @if(!empty(Session::get('google_link')) && Session::get('google_link') == 5)
+                    <input id="email" type="email" class="block mt-1 w-full form-control @error('email') is-invalid @enderror" name="email" value="{{ Session::get('mail') }}" required autocomplete="email" autofocus disabled>
+                @else
+                    <input id="email" type="email" class="block mt-1 w-full form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                @endif
             </div>
 
             <!-- Password -->
@@ -413,6 +419,10 @@
                 <x-button class="ml-3 btn btn-secondary btn-SecondaryColor">
                     {{ __('Register') }}
                 </x-button>
+
+                <a href="{{ url('/auth/google/redirect') }}" style="margin-top: 20px;" class="btn btn-lg btn-success btn-block">
+                    <strong>Register With Google</strong>
+                </a> 
             </div>
         </form>
       </div>
@@ -446,6 +456,14 @@
 </script>
 @endif
 
+@if(!empty(Session::get('google_link')) && Session::get('google_link') == 5)
+<script>
+        $(function() {
+        console.log("{{ Session::get('google_link') }}");
+        $('#registerModal').modal('show');
+    });
+</script>
+@endif
     </body>
 </html>
 

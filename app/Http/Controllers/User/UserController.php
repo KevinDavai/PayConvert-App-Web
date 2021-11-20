@@ -4,12 +4,15 @@ namespace App\Http\Controllers\User;
 
 use App\Models\User;
 use Inertia\Inertia;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Auth;
-use Intervention\Image\Facades\Image;
 use Nette\Utils\Json;
+use Illuminate\Http\Request;
+use App\Rules\MatchOldPassword;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
+use App\Rules\AtLeastOneNumber;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -64,16 +67,33 @@ class UserController extends Controller
     public function update_pseudo(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'min:3', 'max:20', 'unique:users'],
+            'username' => ['required', 'string', 'min:3', 'max:20', 'unique:users'],
         ]);
 
         $user = User::find(Auth::id());
-        $user->name = request()->input('name');
+        $user->username = request()->input('username');
         $user->save();
 
         return back()->with([
             'pseudo_changed' => $request->name
         ]);
         //return view('profile', array('user' => Auth::user()));
+    }
+
+    public function update_password(Request $request)
+    {
+        $request->validate([
+            'currentPassword' => ['required', new MatchOldPassword],
+            'newPassword' => ['required', 'min:7', new AtLeastOneNumber],
+            'confirmPassword' => ['same:newPassword'],
+        ]);
+
+        $user = User::find(Auth::id());
+        $user->password = Hash::make(request()->input('newPassword'));
+        $user->save();
+
+        return back()->with([
+            'passwordChange' => true,
+        ]);
     }
 }

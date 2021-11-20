@@ -14,7 +14,7 @@
           <img :src="'storage/upload/avatars/' + `${ $page.props.user.avatar }`" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info pt-2">
-          <a href="#" class="d-block">{{ $page.props.user.name }}</a>
+          <a href="#" class="d-block">{{ $page.props.user.username }}</a>
         </div>
       </div>
 

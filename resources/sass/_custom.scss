@@ -756,3 +756,64 @@ $duration: 1.4s;
 .opacity-02 {
     opacity: 0.2;
 }
+
+.p-l-10px {
+    padding-left: 10px !important;
+}
+
+.p-b-15px { 
+    padding-bottom: 15px;
+}
+
+.description-profil-color {
+    color: #767676;
+}
+
+.champ-required {
+    color: #767676;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.middle-border { 
+    width: 200px; 
+    height: 200px; 
+    border: red 1px solid;
+    position: relative;
+}
+  
+.middle-border:after { 
+    content: '';
+    position: absolute;
+    border-right: 2px green solid;
+    height: 200px;
+    width: 200px;
+    transform: translateX(-50%);
+}
+
+.middle-border:before { 
+    content: '';
+    position: absolute;
+    border-bottom: 2px green solid;
+    height: 200px;
+    width: 200px;
+    transform: translateY(-50%);
+}
+
+.border-seperate {
+    padding-left: 0;
+    border-left: 1px solid #afafaf;
+}
+
+.p-l-4px {
+    padding-left: 4px !important;
+}
+
+.password-info {
+    color: #999;
+    margin: 35px auto;
+}
+
+.password-section {
+    margin-top: 45px;
+}

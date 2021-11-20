@@ -27,10 +27,10 @@
             </p>
         </div>
         <form enctype="multipart/form-data" class="form-floating" :action="route('profile.update.pseudo')" method="POST" id="nameForm" @submit.prevent="storePseudo" @keydown="clearError">
-            <input type="text" class="form-control form-control-lg" :class="hasError('name') ? 'is-invalid' : ''" id="floatingInputValue" placeholder="NOUVEAU NOM D'UTILISATEUR" name="name" v-model="formData.name"/>
+            <input type="text" class="form-control form-control-lg" :class="hasError('username') ? 'is-invalid' : ''" id="floatingInputValue" placeholder="NOUVEAU NOM D'UTILISATEUR" name="username" v-model="formData.username"/>
             <label for="floatingInputValue">NOUVEAU NOM D'UTILISATEUR</label>
-            <small id="passwordHelp" class="text-danger" v-if="hasError('name')">             
-                {{getError('name')}}
+            <small id="passwordHelp" class="text-danger" v-if="hasError('username')">             
+                {{getError('username')}}
             </small> 
             <input type="hidden" name="_token" :value="csrf">
         </form>
@@ -60,7 +60,7 @@ export default {
             modalID: '#nameModal',
             whatIsChanging: 'Nom d\'utilisateur',
             formData: {
-                name: null,
+                username: null,
             }
         }
     },
