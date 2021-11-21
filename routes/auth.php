@@ -62,5 +62,9 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->middleware('auth')
     ->name('logout');
 
-Route::get('/auth/google/redirect', [GoogleController::class, 'redirectToGoogle']);
-Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+Route::get('/auth/google/login', [GoogleController::class, 'redirectToLogin'])->name('login');
+Route::get('/auth/google/callbackLogin', [GoogleController::class, 'handleGoogleLoginCallback']);
+
+
+Route::get('/auth/google/link', [GoogleController::class, 'redirectToLogin'])->name('link');
+

@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Route;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Session;
+use Laravel\Socialite\Facades\Socialite;
 
 class GoogleController extends Controller
 {
@@ -15,9 +17,17 @@ class GoogleController extends Controller
      * 
      * @return void
      */
-    public function redirectToGoogle()
+    public function redirectToLogin()
     {
-        return Socialite::driver('google')->redirect();
+        //config(['services.google.redirect' => env('GOOGLE_REDIRECT')]);
+        switch(Route::current()->getName()){
+            case 'login':
+                return Socialite::driver('google')->with(['state' => 'type=login'])->redirect();
+                break;
+            case 'link':
+                return Socialite::driver('google')->with(['state' => 'type=link'])->redirect();
+                break;
+        }
     }
 
     /**
@@ -25,25 +35,38 @@ class GoogleController extends Controller
      * 
      * @return void
      */
-    public function handleGoogleCallback()
+    public function handleGoogleLoginCallback(Request $request)
     {
-        
-        $user = Socialite::driver('google')->user();
+    
+        $state = $request->input('state');
+        parse_str($state, $result);
+        $user = Socialite::driver('google')->stateless()->user();
 
-        $finduser = User::where('google_id', $user->id)->first();
+        $type = $result['type'];
 
-        $userMail = $user->getEmail();
-        $userId = $user->getId();
+        switch($type) {
+            case 'login':
+                $finduser = User::where('google_id', $user->id)->first();
 
-        if($finduser){
-     
-            Auth::login($finduser);
+                $userMail = $user->getEmail();
+                $userId = $user->getId();
 
-            return redirect()->intended(RouteServiceProvider::HOME);
+                if($finduser){
             
-        } else {
-            return redirect('/')->with(['mail' => $userMail, 'google_link' => 5, 'userId' => $userId]);
-            dd($user);
+                    Auth::login($finduser);
+
+                    return redirect()->intended(RouteServiceProvider::HOME);
+                    
+                } else {
+                    return redirect('/')->with(['mail' => $userMail, 'google_link' => 5, 'userId' => $userId, 'socialiteType' => 'google']);
+                }
+
+                break;
+            case 'link':
+                dd("add for link");
+                break;
         }
+    
     }
+
 }
