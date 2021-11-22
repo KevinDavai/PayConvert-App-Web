@@ -30,6 +30,7 @@ Route::get('/login', [popupRedirect::class, 'index'])
 
 Route::get('dashboard', [UserController::class, 'index'])->name('dashboard');
 Route::get('profil', [UserController::class, 'profil_setting'])->name('profil_setting');
+Route::get('integration', [UserController::class, 'profil_integration'])->name('profil_integration');
 Route::post('editavatar', [UserController::class, 'update_avatar'])->middleware('auth')->name('profile.update.avatar');
 Route::post('profil/MailEdit', [UserController::class, 'update_email'])->middleware('auth')->name('profile.update.email');
 Route::post('profil/PseudoEdit', [UserController::class, 'update_pseudo'])->middleware('auth')->name('profile.update.pseudo');

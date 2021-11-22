@@ -350,11 +350,11 @@
                     {{ __('Log in') }}
                 </x-button>
 
-                <!--
-                <a href="{{ url('/auth/google/login') }}" style="margin-top: 20px;" class="btn btn-lg btn-success btn-block">
-                    <strong>Login With Google</strong>
-                </a> 
-        -->
+                <a class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-3 btn btn-secondary btn-SecondaryColor" href="{{ url('/auth/google/login') }}" role="button" style="text-transform:none">
+                    <img width="18px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                    Connexion avec google
+                </a>
+        
             </div>
         </form>
       </div>
@@ -368,7 +368,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Connexion</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Enregistrement</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -427,14 +427,15 @@
                     {{ __('Register') }}
                 </x-button>
 
-                <!--
+                
                 @if(!empty(Session::get('google_link')) && Session::get('google_link') == 5)
                 @else
-                <a href="{{ url('/auth/google/login') }}" style="margin-top: 20px;" class="btn btn-lg btn-success btn-block">
-                    <strong>Register With Google</strong>
-                </a> 
+                <a class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-3 btn btn-secondary btn-SecondaryColor" href="{{ url('/auth/google/login') }}" role="button" style="text-transform:none">
+                    <img width="18px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                    S'enregistrer avec Google
+                </a>
                 @endif
-        -->
+        
             </div>
         </form>
       </div>

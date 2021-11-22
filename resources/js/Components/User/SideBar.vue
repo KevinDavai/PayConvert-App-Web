@@ -41,14 +41,29 @@
               </p>
             </inertia-link> 
           </li>   
-          <li class="nav-item">
-            <inertia-link :href="route('profil_setting')" class="nav-link" :class="urlPath == '/profil' ? 'active' : '' ">
-              <i class="nav-icon fas fa-home"></i>
-              <p>
-                  Votre compte
-              </p>
-            </inertia-link> 
-          </li> 
+          <li class="nav-item" :class="urlPath == '/profil' || urlPath == '/integration' ? 'menu-open' : ''">
+          <a href="#" class="nav-link" :class="urlPath == '/profil' ? 'active' : ''">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              Votre compte
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <inertia-link :href="route('profil_setting')" class="nav-link" :class="urlPath == '/profil' ? 'active' : '' ">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Général</p>
+              </inertia-link> 
+            </li>
+            <li class="nav-item">
+              <inertia-link :href="route('profil_integration')" class="nav-link" :class="urlPath == '/integration' ? 'active' : '' ">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Intégration</p>
+              </inertia-link> 
+            </li>
+          </ul>
+        </li>
           <li class="nav-header">SITE</li>
           <li class="nav-item">
             <a :href="route('home')" class="nav-link">

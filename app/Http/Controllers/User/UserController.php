@@ -26,6 +26,11 @@ class UserController extends Controller
         return Inertia::render('Users/Profil');
     }
 
+    public function profil_integration()
+    {
+        return Inertia::render('Users/Integration');
+    }
+
     public function update_avatar(Request $request)
     {
 
