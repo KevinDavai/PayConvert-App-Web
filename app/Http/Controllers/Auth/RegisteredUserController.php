@@ -51,6 +51,15 @@ class RegisteredUserController extends Controller
                     'google_name' => $request->usernameGoogle,
                 ]);
                 break;
+            case 'Github':
+                $user = User::create([
+                    'username' => $request->username,
+                    'email' => $request->email,
+                    'password' => Hash::make($request->password),
+                    'github_id' => $request->idGithub,
+                    'github_name' => $request->usernameGithub,
+                ]);
+                break;
             default:
                 $user = User::create([
                     'username' => $request->username,

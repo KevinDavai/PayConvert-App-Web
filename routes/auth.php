@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\GithubController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\VerifyEmailController;
@@ -67,3 +68,11 @@ Route::get('/auth/google/callbackLogin', [GoogleController::class, 'handleGoogle
 
 
 Route::get('/auth/google/link', [GoogleController::class, 'redirectToLogin'])->name('link');
+
+
+//GitHub
+Route::get('/auth/github/login', [GithubController::class, 'redirectToLogin'])->name('loginGithub');
+Route::get('/auth/github/callbackLogin', [GithubController::class, 'handleGithubLoginCallback']);
+
+
+Route::get('/auth/github/link', [GithubController::class, 'redirectToLogin'])->name('link');

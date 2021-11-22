@@ -354,7 +354,11 @@
                     <img width="18px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
                     Connexion avec google
                 </a>
-        
+
+                <a class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-3 btn btn-secondary btn-SecondaryColor" href="{{ url('/auth/github/login') }}" role="button" style="text-transform:none">
+                    <img width="18px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                    Connexion avec github
+                </a>
             </div>
         </form>
       </div>
@@ -395,7 +399,9 @@
                 <x-label for="email" :value="__('Email')" />
                 @if(!empty(Session::get('google_link')) && Session::get('google_link') == 5)
                     <input id="email" type="email" class="block mt-1 w-full form-control @error('email') is-invalid @enderror" name="email" value="{{ Session::get('mail') }}" autocomplete="email" autofocus readonly>
-                @else
+                @elseif(!empty(Session::get('github_link')) && Session::get('github_link') == 5)
+                    <input id="email" type="email" class="block mt-1 w-full form-control @error('email') is-invalid @enderror" name="email" value="{{ Session::get('mail') }}" autocomplete="email" autofocus readonly>
+                @else  
                     <input id="email" type="email" class="block mt-1 w-full form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                 @endif
             </div>
@@ -422,6 +428,12 @@
                     <input id="usernameGoogle" type="hidden" name="usernameGoogle" value="{{ Session::get('usernameGoogle') }}"
             @endif
 
+            @if(!empty(Session::get('github_link')) && Session::get('github_link') == 5)
+                    <input id="idGithub" type="hidden" name="idGithub" value="{{ Session::get('userId') }}">
+                    <input id="socialiteType" type="hidden" name="socialiteType" value="{{ Session::get('socialiteType') }}">
+                    <input id="usernameGithub" type="hidden" name="usernameGithub" value="{{ Session::get('usernameGithub') }}">
+            @endif
+
             <!-- Register button -->
             <div class="flex items-center justify-end mt-4">
                 <x-button class="ml-3 btn btn-secondary btn-SecondaryColor">
@@ -437,6 +449,13 @@
                 </a>
                 @endif
         
+                @if(!empty(Session::get('github_link')) && Session::get('github_link') == 5)
+                @else
+                <a class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-3 btn btn-secondary btn-SecondaryColor" href="{{ url('/auth/google/login') }}" role="button" style="text-transform:none">
+                    <img width="18px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                    S'enregistrer avec Google
+                </a>
+                @endif
             </div>
         </form>
       </div>
@@ -471,6 +490,20 @@
 @endif
 
 @if(!empty(Session::get('google_link')) && Session::get('google_link') == 5)
+<script>
+    $(function() {
+        $('#registerModal').modal('show');
+    });
+
+    $('#registerModal').on('hidden.bs.modal ', function (e) {
+                location.reload();
+
+
+    })
+</script>
+@endif
+
+@if(!empty(Session::get('github_link')) && Session::get('github_link') == 5)
 <script>
     $(function() {
         $('#registerModal').modal('show');
