@@ -29456,6 +29456,23 @@ label:not(.form-check-label):not(.custom-file-label) {
 
 .width-20em {
   width: 20em;
+  height: 20em;
+}
+
+.btn-info-unlink {
+  color: #9395ce !important;
+  background-color: white !important;
+  padding: 0.84rem 2.14rem !important;
+  border: 2px solid !important;
+  border-color: #9395ce !important;
+}
+
+.btn-info-unlink:hover {
+  color: #9395ce !important;
+  background-color: #ececec !important;
+  padding: 0.84rem 2.14rem !important;
+  border: 2px solid !important;
+  border-color: #9395ce !important;
 }
 
 

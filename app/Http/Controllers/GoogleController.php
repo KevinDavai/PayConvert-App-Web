@@ -50,6 +50,7 @@ class GoogleController extends Controller
 
                 $userMail = $user->getEmail();
                 $userId = $user->getId();
+                $usernameGoogle = $user->getName();
 
                 if ($finduser) {
 
@@ -57,7 +58,7 @@ class GoogleController extends Controller
 
                     return redirect()->intended(RouteServiceProvider::HOME);
                 } else {
-                    return redirect('/')->with(['mail' => $userMail, 'google_link' => 5, 'userId' => $userId, 'socialiteType' => 'google']);
+                    return redirect('/')->with(['mail' => $userMail, 'google_link' => 5, 'userId' => $userId, 'socialiteType' => 'google', 'usernameGoogle' => $usernameGoogle]);
                 }
 
                 break;

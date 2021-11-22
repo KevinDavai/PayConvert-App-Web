@@ -419,6 +419,7 @@
             @if(!empty(Session::get('google_link')) && Session::get('google_link') == 5)
                     <input id="idGoogle" type="hidden" name="idGoogle" value="{{ Session::get('userId') }}">
                     <input id="socialiteType" type="hidden" name="socialiteType" value="{{ Session::get('socialiteType') }}">
+                    <input id="usernameGoogle" type="hidden" name="usernameGoogle" value="{{ Session::get('usernameGoogle') }}"
             @endif
 
             <!-- Register button -->
