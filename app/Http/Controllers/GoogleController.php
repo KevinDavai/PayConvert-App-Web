@@ -20,8 +20,8 @@ class GoogleController extends Controller
     public function redirectToLogin()
     {
         //config(['services.google.redirect' => env('GOOGLE_REDIRECT')]);
-        switch(Route::current()->getName()){
-            case 'login':
+        switch (Route::current()->getName()) {
+            case 'loginGoogle':
                 return Socialite::driver('google')->with(['state' => 'type=login'])->redirect();
                 break;
             case 'link':
@@ -37,26 +37,25 @@ class GoogleController extends Controller
      */
     public function handleGoogleLoginCallback(Request $request)
     {
-    
+
         $state = $request->input('state');
         parse_str($state, $result);
         $user = Socialite::driver('google')->stateless()->user();
 
         $type = $result['type'];
 
-        switch($type) {
+        switch ($type) {
             case 'login':
                 $finduser = User::where('google_id', $user->id)->first();
 
                 $userMail = $user->getEmail();
                 $userId = $user->getId();
 
-                if($finduser){
-            
+                if ($finduser) {
+
                     Auth::login($finduser);
 
                     return redirect()->intended(RouteServiceProvider::HOME);
-                    
                 } else {
                     return redirect('/')->with(['mail' => $userMail, 'google_link' => 5, 'userId' => $userId, 'socialiteType' => 'google']);
                 }
@@ -66,7 +65,5 @@ class GoogleController extends Controller
                 dd("add for link");
                 break;
         }
-    
     }
-
 }
