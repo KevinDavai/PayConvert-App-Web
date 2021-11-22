@@ -14,7 +14,7 @@
           <img :src="'storage/upload/avatars/' + `${ $page.props.user.avatar }`" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info pt-2">
-          <a href="#" class="d-block">{{ $page.props.user.name }}</a>
+          <a href="#" class="d-block">{{ $page.props.user.username }}</a>
         </div>
       </div>
 
@@ -26,7 +26,7 @@
                          <li class="nav-header">PRINCIPAL</li>
 
           <li class="nav-item">
-            <inertia-link :href="route('dashboard')" class="nav-link active">
+            <inertia-link :href="route('dashboard')" class="nav-link" :class="urlPath == '/dashboard' ? 'active' : '' ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -34,21 +34,36 @@
             </inertia-link>
           </li>
           <li class="nav-item">
-            <inertia-link :href="route('dashboard')" class="nav-link">
+            <inertia-link :href="route('dashboard')" class="nav-link" :class="urlPath == '/convert' ? 'active' : '' ">
               <i class="nav-icon fas fa-home"></i>
               <p>
                   Convertir
               </p>
             </inertia-link> 
           </li>   
-          <li class="nav-item">
-            <inertia-link :href="route('profil_setting')" class="nav-link">
-              <i class="nav-icon fas fa-home"></i>
-              <p>
-                  Votre compte
-              </p>
-            </inertia-link> 
-          </li> 
+          <li class="nav-item" :class="urlPath == '/profil' || urlPath == '/integration' ? 'menu-open' : ''">
+          <a href="#" class="nav-link" :class="urlPath == '/profil' ? 'active' : ''">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+              Votre compte
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <inertia-link :href="route('profil_setting')" class="nav-link" :class="urlPath == '/profil' ? 'active' : '' ">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Général</p>
+              </inertia-link> 
+            </li>
+            <li class="nav-item">
+              <inertia-link :href="route('profil_integration')" class="nav-link" :class="urlPath == '/integration' ? 'active' : '' ">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Intégration</p>
+              </inertia-link> 
+            </li>
+          </ul>
+        </li>
           <li class="nav-header">SITE</li>
           <li class="nav-item">
             <a :href="route('home')" class="nav-link">
@@ -81,7 +96,12 @@ export default {
         csrf() {
             return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         },
-    }
+    },
+    data() {
+      return {
+        urlPath: location.pathname,
+      }
+    },
+    
 }
-
 </script>

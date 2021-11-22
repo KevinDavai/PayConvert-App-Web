@@ -76,7 +76,7 @@
             
 
               <!-- TABLE: LATEST ORDERS -->
-              <div class="card">
+              <div class="card no-align-items">
                 <div class="card-header border-transparent">
                   <h3 class="card-title">Vos cartes</h3>
 

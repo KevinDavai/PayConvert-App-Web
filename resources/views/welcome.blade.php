@@ -299,6 +299,7 @@
   </footer>
   <!-- Footer -->
 
+
 <!-- Modal -->
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -348,6 +349,12 @@
                 <x-button class="ml-3 btn btn-secondary btn-SecondaryColor">
                     {{ __('Log in') }}
                 </x-button>
+
+                <a class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-3 btn btn-secondary btn-SecondaryColor" href="{{ url('/auth/google/login') }}" role="button" style="text-transform:none">
+                    <img width="18px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                    Connexion avec google
+                </a>
+        
             </div>
         </form>
       </div>
@@ -361,7 +368,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Connexion</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Enregistrement</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -378,17 +385,19 @@
 
             <!-- Name -->
             <div class="form-group">
-                <x-label for="name" :value="__('Name')" />
+                <x-label for="username" :value="__('Username')" />
 
-                <input id="name" class="block mt-1 w-full form-control" type="text" name="name" :value="old('name')" required autofocus />
+                <input id="username" class="block mt-1 w-full form-control" type="text" name="username" :value="old('username')" required autofocus />
             </div>
 
             <!-- Email Address -->
             <div class="block mt-4">
                 <x-label for="email" :value="__('Email')" />
-
-                <input id="email" type="email" class="block mt-1 w-full form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
+                @if(!empty(Session::get('google_link')) && Session::get('google_link') == 5)
+                    <input id="email" type="email" class="block mt-1 w-full form-control @error('email') is-invalid @enderror" name="email" value="{{ Session::get('mail') }}" autocomplete="email" autofocus readonly>
+                @else
+                    <input id="email" type="email" class="block mt-1 w-full form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                @endif
             </div>
 
             <!-- Password -->
@@ -407,11 +416,26 @@
                                 name="password_confirmation" required />
             </div>
 
+            @if(!empty(Session::get('google_link')) && Session::get('google_link') == 5)
+                    <input id="idGoogle" type="hidden" name="idGoogle" value="{{ Session::get('userId') }}">
+                    <input id="socialiteType" type="hidden" name="socialiteType" value="{{ Session::get('socialiteType') }}">
+            @endif
+
             <!-- Register button -->
             <div class="flex items-center justify-end mt-4">
                 <x-button class="ml-3 btn btn-secondary btn-SecondaryColor">
                     {{ __('Register') }}
                 </x-button>
+
+                
+                @if(!empty(Session::get('google_link')) && Session::get('google_link') == 5)
+                @else
+                <a class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-3 btn btn-secondary btn-SecondaryColor" href="{{ url('/auth/google/login') }}" role="button" style="text-transform:none">
+                    <img width="18px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                    S'enregistrer avec Google
+                </a>
+                @endif
+        
             </div>
         </form>
       </div>
@@ -445,6 +469,19 @@
 </script>
 @endif
 
+@if(!empty(Session::get('google_link')) && Session::get('google_link') == 5)
+<script>
+    $(function() {
+        $('#registerModal').modal('show');
+    });
+
+    $('#registerModal').on('hidden.bs.modal ', function (e) {
+                location.reload();
+
+
+    })
+</script>
+@endif
     </body>
 </html>
 

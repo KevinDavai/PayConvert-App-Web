@@ -4,10 +4,14 @@ namespace App\Http\Controllers\User;
 
 use App\Models\User;
 use Inertia\Inertia;
+use Nette\Utils\Json;
 use Illuminate\Http\Request;
+use App\Rules\MatchOldPassword;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use App\Rules\AtLeastOneNumber;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
@@ -20,6 +24,11 @@ class UserController extends Controller
     public function profil_setting()
     {
         return Inertia::render('Users/Profil');
+    }
+
+    public function profil_integration()
+    {
+        return Inertia::render('Users/Integration');
     }
 
     public function update_avatar(Request $request)
@@ -36,6 +45,60 @@ class UserController extends Controller
             $user->save();
         }
 
+        return back();
+
         //return view('profile', array('user' => Auth::user()));
+    }
+
+    public function update_email(Request $request)
+    {
+        $request->validate([
+            'email' => ['required', 'email', 'unique:users'],
+        ]);
+
+        $user = User::find(Auth::id());
+        $user->email = request()->input('email');
+        $user->email_verified_at = NULL;
+        $user->save();
+
+        $user->sendEmailVerificationNotification();
+
+        return back()->with([
+            'email_changed' => $request->email
+        ]);
+        //return view('profile', array('user' => Auth::user()));
+    }
+
+    public function update_pseudo(Request $request)
+    {
+        $request->validate([
+            'username' => ['required', 'string', 'min:3', 'max:20', 'unique:users'],
+        ]);
+
+        $user = User::find(Auth::id());
+        $user->username = request()->input('username');
+        $user->save();
+
+        return back()->with([
+            'pseudo_changed' => $request->name
+        ]);
+        //return view('profile', array('user' => Auth::user()));
+    }
+
+    public function update_password(Request $request)
+    {
+        $request->validate([
+            'currentPassword' => ['required', new MatchOldPassword],
+            'newPassword' => ['required', 'min:7', new AtLeastOneNumber],
+            'confirmPassword' => ['same:newPassword'],
+        ]);
+
+        $user = User::find(Auth::id());
+        $user->password = Hash::make(request()->input('newPassword'));
+        $user->save();
+
+        return back()->with([
+            'passwordChange' => true,
+        ]);
     }
 }
