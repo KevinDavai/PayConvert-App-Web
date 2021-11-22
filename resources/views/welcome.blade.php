@@ -384,7 +384,7 @@
             </div>
 
             <!-- Email Address -->
-            <div class="form-group">
+            <div class="block mt-4">
                 <x-label for="email" :value="__('Email')" />
 
                 <input id="email" type="email" class="block mt-1 w-full form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -392,14 +392,14 @@
             </div>
 
             <!-- Password -->
-            <div class="form-group">
+            <div class="block mt-4">
                 <x-label for="password" :value="__('Password')" />
 
                 <input id="password" type="password" class="block mt-1 w-full form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
             </div>
 
             <!-- Confirm Password -->
-            <div class="form-group">
+            <div class="block mt-4">
                 <x-label for="password_confirmation" :value="__('Confirm Password')" />
 
                 <input id="password_confirmation" class="block mt-1 w-full form-control"
