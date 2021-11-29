@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CardController;
+use App\Http\Controllers\Api\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +20,12 @@ Route::prefix('v1/users')->group(function () { // Collection user
     Route::post('/post', [AuthController::class, 'register']); // Créer un compte
     Route::post('/login', [AuthController::class, 'login']); // Connexion a un compte
 
-    Route::group(['middleware' => ['auth:sanctum']], function() { // Route accessible que si user est co via bearer token
+    Route::group(['middleware' => ['auth:sanctum']], function () { // Route accessible que si user est co via bearer token
         Route::post('/logout', [AuthController::class, 'logout']); // Deconnection d'un compte
     });
 });
+
+Route::get('/cardslist', [CardController::class, 'getAllCardFromUser'])->name('api.getListCard');
 
 
 

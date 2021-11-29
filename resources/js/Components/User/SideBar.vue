@@ -34,7 +34,7 @@
             </inertia-link>
           </li>
           <li class="nav-item">
-            <inertia-link :href="route('dashboard')" class="nav-link" :class="urlPath == '/convert' ? 'active' : '' ">
+            <inertia-link :href="route('profil_convertir')" class="nav-link" :class="urlPath == '/convert' ? 'active' : '' ">
               <i class="nav-icon fas fa-home"></i>
               <p>
                   Convertir

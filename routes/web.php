@@ -3,6 +3,7 @@
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\popupRedirect;
+use App\Http\Controllers\CardController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\User\EmailChangeController;
@@ -29,12 +30,14 @@ Route::get('/login', [popupRedirect::class, 'index'])
     ->name('login');
 
 Route::get('dashboard', [UserController::class, 'index'])->name('dashboard');
+Route::get('convertir', [UserController::class, 'profil_convertir'])->name('profil_convertir');
 Route::get('profil', [UserController::class, 'profil_setting'])->name('profil_setting');
 Route::get('integration', [UserController::class, 'profil_integration'])->name('profil_integration');
 Route::post('editavatar', [UserController::class, 'update_avatar'])->middleware('auth')->name('profile.update.avatar');
 Route::post('profil/MailEdit', [UserController::class, 'update_email'])->middleware('auth')->name('profile.update.email');
 Route::post('profil/PseudoEdit', [UserController::class, 'update_pseudo'])->middleware('auth')->name('profile.update.pseudo');
 Route::post('profil/PasswordEdit', [UserController::class, 'update_password'])->name('profile.update.password');
+Route::post('profil/PostCard', [CardController::class, 'post'])->name('profile.post_card');
 
 
 

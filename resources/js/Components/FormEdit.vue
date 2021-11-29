@@ -24,7 +24,11 @@ export default {
                 $(this.modalID).modal('hide');
 
                 this.onSuccess(response.data.message)
-                toastr.success(this.whatIsChanging + ' modifiée avec succes.')
+                if(this.whatIsChanging == 'Card') {
+                    toastr.success('Demande envoyée avec succès.')
+                } else {
+                    toastr.success(this.whatIsChanging + ' modifiée avec succès.')
+                }
                 this.loading = false
             }).catch(error => {
                 if(error.response.status == 422) {
@@ -45,8 +49,12 @@ export default {
                 $(this.modalID).modal('hide');
 
                 this.onSuccess(response.data.message)
-                toastr.success(this.whatIsChanging + ' modifiée avec succes.')
-                this.loading = false
+                if(this.whatIsChanging == 'Card') {
+                    toastr.success('Demande envoyée avec succès.')
+                } else {
+                    toastr.success(this.whatIsChanging + ' modifiée avec succès.')
+                }
+                                this.loading = false
             }).catch(error => {
                 if(error.response.status == 422) {
                     this.setErrors(error.response.data.errors)

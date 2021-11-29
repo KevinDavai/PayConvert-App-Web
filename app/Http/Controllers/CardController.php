@@ -1,0 +1,51 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Card;
+use App\Models\User;
+use Inertia\Inertia;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class CardController extends Controller
+{
+    public function post(Request $request)
+    {
+
+        $request->validate([
+            'paypalMail' => ['required', 'email'],
+            'type' => ['required'],
+            'code' => ['required', 'min:16', 'max:16'],
+            'value' => ['required', 'numeric']
+        ]);
+
+        $user = User::find(Auth::id());
+        $user_id = $user->id;
+
+        $card = Card::create([
+            'emailPaypal' => $request->paypalMail,
+            'type' => $request->type,
+            'code' => $request->code,
+            'value' => $request->value,
+            'user_id' => $user_id,
+        ]);
+
+        return back()->with([
+            'card_status' => 'Send'
+        ]);
+    }
+
+    public function getAllCardFromUser()
+    {
+        $user = User::find(Auth::id());
+        $cards = Card::where('user_id', $user->id)->get();
+        $response = [
+            'error' => false,
+            'message' => "Succes",
+            'cards' => $cards,
+        ];
+
+        return response($response, 200);
+    }
+}

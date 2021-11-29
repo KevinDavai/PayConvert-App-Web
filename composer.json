@@ -17,6 +17,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/socialite": "^5.2",
         "laravel/tinker": "^2.5",
+        "socialiteproviders/steam": "^4.1",
         "tightenco/ziggy": "^1.4"
     },
     "require-dev": {

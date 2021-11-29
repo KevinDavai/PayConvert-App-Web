@@ -102,67 +102,18 @@
                       </tr>
                       </thead>
                       <tbody>
-                      <tr>
+                      <tr v-for="(card, index) in cards.cards">
                         <td>
-                          <input class="form-control" type="text" value="claragmtt@gmail.com" aria-label="Disabled input example" disabled readonly>
+                          <input class="form-control" type="text" :value="card.emailPaypal" aria-label="Disabled input example" disabled readonly>
                         </td>
                         <td>
-                          <input class="form-control" type="text" value="0574-8475-8852-8485" aria-label="Disabled input example" disabled readonly>
+                          <input class="form-control" type="text" :value="card.code" aria-label="Disabled input example" disabled readonly>
                         </td>
-                        <td><span class="badge badge-success mt-11-px">Shipped</span></td>
+                        <td><span class="badge badge-success mt-11-px">{{ card.status }}</span></td>
                         <td>
-                          <div class="sparkbar mt-11-px" data-color="#00a65a" data-height="20">50€</div>
+                          <div class="sparkbar mt-11-px" data-color="#00a65a" data-height="20">{{ card.value }}</div>
                         </td>
-                      </tr>
-                       <tr>
-                        <td>
-                          <input class="form-control" type="text" value="claragmtt@gmail.com" aria-label="Disabled input example" disabled readonly>
-                        </td>
-                        <td>
-                          <input class="form-control" type="text" value="0574-8475-8852-8485" aria-label="Disabled input example" disabled readonly>
-                        </td>
-                        <td><span class="badge badge-success mt-11-px">Shipped</span></td>
-                        <td>
-                          <div class="sparkbar mt-11-px" data-color="#00a65a" data-height="20">50€</div>
-                        </td>
-                      </tr>
-                       <tr>
-                        <td>
-                          <input class="form-control" type="text" value="claragmtt@gmail.com" aria-label="Disabled input example" disabled readonly>
-                        </td>
-                        <td>
-                          <input class="form-control" type="text" value="0574-8475-8852-8485" aria-label="Disabled input example" disabled readonly>
-                        </td>
-                        <td><span class="badge badge-success mt-11-px">Shipped</span></td>
-                        <td>
-                          <div class="sparkbar mt-11-px" data-color="#00a65a" data-height="20">50€</div>
-                        </td>
-                      </tr>
-                                             <tr>
-                        <td>
-                          <input class="form-control" type="text" value="claragmtt@gmail.com" aria-label="Disabled input example" disabled readonly>
-                        </td>
-                        <td>
-                          <input class="form-control" type="text" value="0574-8475-8852-8485" aria-label="Disabled input example" disabled readonly>
-                        </td>
-                        <td><span class="badge badge-success mt-11-px">Shipped</span></td>
-                        <td>
-                          <div class="sparkbar mt-11-px" data-color="#00a65a" data-height="20">50€</div>
-                        </td>
-                      </tr>
-                                             <tr>
-                        <td>
-                          <input class="form-control" type="text" value="claragmtt@gmail.com" aria-label="Disabled input example" disabled readonly>
-                        </td>
-                        <td>
-                          <input class="form-control" type="text" value="0574-8475-8852-8485" aria-label="Disabled input example" disabled readonly>
-                        </td>
-                        <td><span class="badge badge-success mt-11-px">Shipped</span></td>
-                        <td>
-                          <div class="sparkbar mt-11-px" data-color="#00a65a" data-height="20">50€</div>
-                        </td>
-                      </tr>
-                    
+                      </tr>            
                       </tbody>
                     </table>
                   </div>
@@ -188,6 +139,24 @@
 import UserLayout from '@/Layouts/UserLayout'
     export default {
       components: { UserLayout },
+      data() {
+        return{
+            cards: [],
+        }
+      },
+
+      created() {
+        this.getAllCards();
+      },
+
+      methods: {
+        getAllCards() {
+            axios.get(route('api.getListCard')).then((res) => {
+                this.cards = res.data;
+            });
+        },
+      },
+
 
     }
 </script>

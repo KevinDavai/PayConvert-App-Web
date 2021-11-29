@@ -10,6 +10,7 @@ use App\Rules\AtLeastOneNumber;
 use App\Rules\MatchOldPassword;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use App\Models\Card;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
@@ -20,6 +21,11 @@ class UserController extends Controller
     public function index()
     {
         return Inertia::render('Users/Dashboard');
+    }
+
+    public function profil_convertir()
+    {
+        return Inertia::render('Users/Convertir');
     }
 
     public function profil_setting()
