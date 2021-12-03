@@ -7,6 +7,7 @@ use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Size;
 
 class CardController extends Controller
 {
@@ -44,6 +45,49 @@ class CardController extends Controller
             'error' => false,
             'message' => "Succes",
             'cards' => $cards,
+        ];
+
+        return response($response, 200);
+    }
+
+    public function getCardStatusFromUser()
+    {
+        $user = User::find(Auth::id());
+
+        $nbPendingCards =  Card::where('user_id', $user->id)->where('status', 'Pending')->get()->count();
+
+        $nbAcceptedCards = Card::where('user_id', $user->id)->where('status', 'Accepted')->get()->count();
+
+        $nbRefusedCards = Card::where('user_id', $user->id)->where('status', 'Refused')->get()->count();
+
+        $response = [
+            'error' => false,
+            'message' => "Succes",
+            'nbPendingCards' => $nbPendingCards,
+            'nbAcceptedCards' => $nbAcceptedCards,
+            'nbRefusedCards' => $nbRefusedCards,
+        ];
+
+        return response($response, 200);
+    }
+
+    
+    public function getMoneyConvertFromUser()
+    {
+        $user = User::find(Auth::id());
+
+        $AcceptedCards =  Card::where('user_id', $user->id)->where('status', 'Accepted')->get();
+
+        $money = 0;
+
+        foreach ($AcceptedCards as &$card) {
+            $money += $card->value;
+        }
+
+        $response = [
+            'error' => false,
+            'message' => "Succes",
+            'money' => $money,
         ];
 
         return response($response, 200);

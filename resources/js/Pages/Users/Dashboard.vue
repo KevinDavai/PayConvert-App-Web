@@ -17,7 +17,7 @@
 
                 <div class="info-box-content">
                   <span class="info-box-text fw-bold">Argent convertis</span>
-                  <span class="info-box-number">0</span>
+                  <span class="info-box-number">{{ this.money }}€</span>
                 </div>
                 <!-- /.info-box-content -->
               </div>
@@ -31,8 +31,8 @@
                 <span class="info-box-icon bg-blueMe whiteimportant  elevation-1"><i class="fas fa-money-check-alt"></i></span>
 
                 <div class="info-box-content">
-                  <span class="info-box-text fw-bold">Carte(s)</span>
-                  <span class="info-box-number">0</span>
+                  <span class="info-box-text fw-bold">Carte(s) Acceptée(s)</span>
+                  <span class="info-box-number">{{ this.Accepted }}</span>
                 </div>
                 <!-- /.info-box-content -->
               </div>
@@ -45,8 +45,8 @@
                 <span class="info-box-icon bg-orangeMe whiteimportant elevation-1"><i class="far fa-clock"></i></span>
 
                 <div class="info-box-content">
-                  <span class="info-box-text fw-bold">En attente(s)</span>
-                  <span class="info-box-number">0</span>
+                  <span class="info-box-text fw-bold">Cartes(s) en attente(s)</span>
+                  <span class="info-box-number">{{ this.Pending }}</span>
                 </div>
                 <!-- /.info-box-content -->
               </div>
@@ -58,8 +58,8 @@
                 <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-ban"></i></span>
 
                 <div class="info-box-content">
-                  <span class="info-box-text fw-bold">Refusée(s)</span>
-                  <span class="info-box-number">0</span>
+                  <span class="info-box-text fw-bold">Cartes(s) refusée(s)</span>
+                  <span class="info-box-number">{{ this.Refused }}</span>
                 </div>
                 <!-- /.info-box-content -->
               </div>
@@ -78,15 +78,41 @@
               <!-- TABLE: LATEST ORDERS -->
               <div class="card no-align-items">
                 <div class="card-header border-transparent">
-                  <h3 class="card-title">Vos cartes</h3>
-
-                  <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                      <i class="fas fa-minus"></i>
+                  <div class="card-header border-transparent d-flex align-items-center justify-content-between">
+                    <h3 class="card-title">Vos cartes</h3>
+                    <button  type="button" id="dropdownPrice" data-toggle="dropdown" aria-expanded="false" class="btn btn-outline-filtre waves-effect dropdown-toggle">
+                      Price
                     </button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove">
-                      <i class="fas fa-times"></i>
-                    </button>
+                    <div class="dropdown-menu">
+                      <div class="p-3 d-flex flex-column">
+                        <div class="d-flex justify-content-center">
+                          <span class="info-box-text fw-bold purple-mine">{{ value[0] }} € </span>
+                          <span class="info-box-text fw-bold px-2"> à </span>
+                          <span class="info-box-text fw-bold purple-mine"> {{ value[1] }} €</span>
+                        </div>
+                        <vue-slider v-model="value" :width="500" :interval="5" :min="0" :max="1000" :tooltip-placement="['bottom', 'bottom']" :enable-cross="false" :process-style="{ backgroundColor: 'purple' }" :tooltip-style="{ backgroundColor: 'purple', borderColor: 'purple' }"></vue-slider>
+                      </div>
+                    </div>
+                                        
+                    <div class="form-group mb-0">
+                      <div class="input-group mt-0 align-items-center">
+                        <input type="search" v-model="this.keyword" class="form-control form-control" placeholder="Mot clé...">
+                        <div class="input-group-append align-items-center">
+                          <button type="submit" @on-click="updateKeyword" class="btn btn-default mb-0">
+                            <i class="fa fa-search"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto my-1">
+                      <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                      <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" v-model="statusFiltre">
+                        <option :selected="true" value="all">Tout les status</option>
+                        <option value="Accepted">Acceptée</option>
+                        <option value="Pending">En attente</option>
+                        <option value="Refused">Refusée</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
                 <!-- /.card-header -->
@@ -102,14 +128,16 @@
                       </tr>
                       </thead>
                       <tbody>
-                      <tr v-for="(card, index) in cards.cards">
+                      <tr v-for="(card, index) in computedCards">
                         <td>
                           <input class="form-control" type="text" :value="card.emailPaypal" aria-label="Disabled input example" disabled readonly>
                         </td>
                         <td>
                           <input class="form-control" type="text" :value="card.code" aria-label="Disabled input example" disabled readonly>
                         </td>
-                        <td><span class="badge badge-success mt-11-px">{{ card.status }}</span></td>
+                        <td v-if="card.status == 'Pending'"><span class="badge badge-warning mt-11-px">En attente</span></td>
+                        <td v-if="card.status == 'Accepted'"><span class="badge badge-success mt-11-px">Acceptée</span></td>
+                        <td v-if="card.status == 'Refused'"><span class="badge badge-danger mt-11-px">Refusée</span></td>
                         <td>
                           <div class="sparkbar mt-11-px" data-color="#00a65a" data-height="20">{{ card.value }}</div>
                         </td>
@@ -136,27 +164,69 @@
 </template>
 
 <script>
+$(function () {
+    /* BOOTSTRAP SLIDER */
+    $('.slider').bootstrapSlider()
+});
 import UserLayout from '@/Layouts/UserLayout'
+import VueSlider from 'vue-slider-component'
+import 'vue-slider-component/theme/antd.css'
+
     export default {
-      components: { UserLayout },
+      components: { UserLayout, VueSlider },
       data() {
         return{
             cards: [],
+            search: [],
+            Pending: null,
+            Accepted: null,
+            Refused: null,
+            statusFiltre: 'all',
+            money: null,
+            keyword : '',
+            value: [0, 1000],
         }
+      },
+      computed: {
+        computedCards: function () {
+          console.log(this.keyword.length);
+          return this.cards.filter((item) => {
+            return (this.value[0] === 0 && this.value[1] === 1000 || item.value >= this.value[0] && item.value < this.value[1])
+                    && (this.keyword.length === 0 || item.emailPaypal.includes(this.keyword))
+                    && (this.keyword.length === 0 || item.code.includes(this.keyword))
+                    && (this.statusFiltre === 'all' || item.status.includes(this.statusFiltre))
+          })
+        },
       },
 
       created() {
         this.getAllCards();
+        this.getCardsStatus();
+        this.getMoneyFromUser();
       },
 
       methods: {
         getAllCards() {
             axios.get(route('api.getListCard')).then((res) => {
-                this.cards = res.data;
+                this.cards = res.data.cards;
             });
         },
+        getCardsStatus() {
+          axios.get(route('cards_get_statusFromUser')).then((res) => {
+            this.Pending = res.data.nbPendingCards;
+            this.Accepted = res.data.nbAcceptedCards;
+            this.Refused = res.data.nbRefusedCards;
+          });
+        },
+        getMoneyFromUser() {
+          axios.get(route('cards_get_moneyFromUser')).then((res) => {
+            this.money = res.data.money;
+          });
+        },
+        updateKeyword() {
+          console.log(this.keyword);
+        }
+
       },
-
-
     }
 </script>

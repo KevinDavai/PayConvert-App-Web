@@ -59,6 +59,7 @@
     <div class="col-1">
     </div>
 </div>
+
 <div class="col ml-2 mt-5">
     <a type="button" class="btn btn-outline-info waves-effect" data-dismiss="modal">Annuler</a>
     <input type="submit" :disabled="hasAnyError" form="passwordForm" class="btn btn-info waves-effect waves-light ml-4" value="Confirmer">
