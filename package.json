@@ -41,6 +41,7 @@
         "form-data": "^4.0.0",
         "laravel-vue-validator": "^1.0.7",
         "popper.js": "^1.16.1",
+        "v-pagination-3": "^0.1.7",
         "vue": "^3.2.9",
         "vue-bootstrap-slider": "^2.1.8",
         "vue-slider-component": "^4.0.0-beta.4"

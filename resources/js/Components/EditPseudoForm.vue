@@ -67,7 +67,8 @@ export default {
     methods:{
         storePseudo(){
             this.post(route('profile.update.pseudo'), this.formData);
-         },   
+         },  
+
     },
     computed: {
         csrf() {

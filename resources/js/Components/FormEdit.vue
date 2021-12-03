@@ -20,10 +20,20 @@ export default {
         post(routeName, data) {
             console.log(routeName);
             this.loading = true;
+            let dt;
+            if(data.email != null) {
+                dt = data.email;
+            } else if(data.username != null) {
+                dt = data.username;
+            }
             axios.post(routeName, data).then(response => {
                 $(this.modalID).modal('hide');
+                
+                console.log(dt);
+                
+                this.onSuccess()
+                this.emitToParent(dt);
 
-                this.onSuccess(response.data.message)
                 if(this.whatIsChanging == 'Card') {
                     toastr.success('Demande envoyée avec succès.')
                 } else {

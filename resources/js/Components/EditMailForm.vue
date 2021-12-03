@@ -55,24 +55,31 @@ export default {
     components: { FormEdit },
     name: 'EditMailForm',
     mixins: [FormEdit],
+    emits: ["childToParent"],
     data(){
         return{
             modalID: '#emailModal',
             whatIsChanging: 'email',
             formData: {
                 email: null,
-            }
+            },
+            newEmail: null,
         }
     },
     methods:{
         storeEmail(){
-            this.post(route('profile.update.email'), this.formData);
+            this.post(route('profile.update.email'), this.formData)
          },   
-    },
+        emitToParent (value) {
+            console.log(value);
+            this.$emit('childToParent', value)
+        }
+    },  
     computed: {
         csrf() {
             return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         },
-    },  
+    }, 
+     
 }
 </script>

@@ -19,7 +19,7 @@
                             class="form-control form-control-lg"
                             id="floatingInputValue"
                             placeholder="example"
-                            :value="`${$page.props.user.username}`"
+                            :value="this.user.username"
                             disabled=""
                         />
                         <label for="floatingInputValue">Nom d'utilisateur</label>
@@ -49,7 +49,7 @@
                             class="form-control form-control-lg"
                             id="floatingInputValue"
                             placeholder="name@example.com"
-                            :value="`${$page.props.user.email}`"
+                            :value="this.user.email"
                             disabled=""
                         />
                         <label for="floatingInputValue">Adresse Email</label>
@@ -92,7 +92,7 @@
             <div class="modal-dialog modal-notify modal-info" role="document">
                 <!--Content-->
                 <div class="modal-content text-center">
-                        <EditMailForm>
+                        <EditMailForm  v-on:childToParent="updateEmail">
 
                         </EditMailForm>
                 </div>
@@ -119,7 +119,31 @@ import EditMailForm from "@/components/EditMailForm";
 import EditPseudoForm from "@/components/EditPseudoForm";
 import EditPasswordForm from "@/components/EditPasswordForm";
     export default {
+        name: 'profil',
         components: { UserLayout, EditMailForm, EditPseudoForm, EditPasswordForm },
+        data() {
+            return {
+                user: {},
+            }
+        },
+        created() {
+            this.getUserDetails();
+        },
+        methods: {
+            getUserDetails() {
+                axios.get(route('get_userProfil')).then((res) => {
+                    console.log(this.user);
+                    this.user = res.data.user;
+                    console.log(res.data.user);
+
+                });
+            },
+
+            updateEmail(value) {
+                this.user.email = value;
+            }
+            
+        },
     };
 
 </script>

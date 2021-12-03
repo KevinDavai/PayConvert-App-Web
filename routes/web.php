@@ -39,6 +39,8 @@ Route::post('profil/PseudoEdit', [UserController::class, 'update_pseudo'])->midd
 Route::post('profil/PasswordEdit', [UserController::class, 'update_password'])->middleware('auth')->name('profile.update.password');
 Route::post('profil/PostCard', [CardController::class, 'post'])->middleware('auth')->name('profile.post_card');
 
+//User
+Route::get('/dashboard/get_userDetails', [UserController::class, 'get_userProfil'])->middleware('auth')->name('get_userProfil');
 
 // Cards
 Route::get('dashboard/cards_status', [CardController::class, 'getCardStatusFromUser'])->middleware('auth')->name('cards_get_statusFromUser');

@@ -108,4 +108,16 @@ class UserController extends Controller
             'passwordChange' => true,
         ]);
     }
+
+    public function get_userProfil()
+    {
+        $user = User::find(Auth::id());
+        $response = [
+            'error' => false,
+            'message' => "Succes",
+            'user' => $user,
+        ];
+
+        return response($response, 200);
+    }
 }

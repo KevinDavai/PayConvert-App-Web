@@ -117,6 +117,13 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body p-0">
+                              <pagination 
+          v-model="page" 
+          :records="500" 
+          :per-page="7" 
+          @paginate="list(this.page)"
+          :options="options">
+        </pagination> 
                   <div class="table-responsive">
                     <table class="table m-0">
                       <thead>
@@ -171,9 +178,11 @@ $(function () {
 import UserLayout from '@/Layouts/UserLayout'
 import VueSlider from 'vue-slider-component'
 import 'vue-slider-component/theme/antd.css'
+import Pagination from 'v-pagination-3'
+import MyPagination from '@/Components/Pagination.vue'
 
     export default {
-      components: { UserLayout, VueSlider },
+      components: { UserLayout, VueSlider, Pagination, MyPagination },
       data() {
         return{
             cards: [],
@@ -189,11 +198,9 @@ import 'vue-slider-component/theme/antd.css'
       },
       computed: {
         computedCards: function () {
-          console.log(this.keyword.length);
           return this.cards.filter((item) => {
             return (this.value[0] === 0 && this.value[1] === 1000 || item.value >= this.value[0] && item.value < this.value[1])
-                    && (this.keyword.length === 0 || item.emailPaypal.includes(this.keyword))
-                    && (this.keyword.length === 0 || item.code.includes(this.keyword))
+                    && (this.keyword.length === 0 || item.emailPaypal.includes(this.keyword) || item.code.includes(this.keyword))
                     && (this.statusFiltre === 'all' || item.status.includes(this.statusFiltre))
           })
         },
