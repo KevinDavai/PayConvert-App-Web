@@ -103,7 +103,7 @@
             <div class="modal-dialog modal-notify modal-info" role="document">
                 <!--Content-->
                 <div class="modal-content text-center">
-                        <EditPseudoForm>
+                        <EditPseudoForm v-on:childToParent="updatePseudo">
 
                         </EditPseudoForm>
                 </div>
@@ -141,6 +141,10 @@ import EditPasswordForm from "@/components/EditPasswordForm";
 
             updateEmail(value) {
                 this.user.email = value;
+            },
+
+            updatePseudo(value) {
+                this.user.username = value;
             }
             
         },

@@ -68,6 +68,10 @@ export default {
         storePseudo(){
             this.post(route('profile.update.pseudo'), this.formData);
          },  
+        emitToParent (value) {
+            console.log(value);
+            this.$emit('childToParent', value)
+        }
 
     },
     computed: {

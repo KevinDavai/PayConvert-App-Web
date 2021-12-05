@@ -28,11 +28,10 @@ export default {
             }
             axios.post(routeName, data).then(response => {
                 $(this.modalID).modal('hide');
-                
-                console.log(dt);
-                
+                                
                 this.onSuccess()
-                this.emitToParent(dt);
+                if(dt != undefined)
+                    this.emitToParent(dt);
 
                 if(this.whatIsChanging == 'Card') {
                     toastr.success('Demande envoyée avec succès.')
@@ -41,6 +40,7 @@ export default {
                 }
                 this.loading = false
             }).catch(error => {
+                console.log(error.response.status);
                 if(error.response.status == 422) {
                     this.setErrors(error.response.data.errors)
                     this.loading = false

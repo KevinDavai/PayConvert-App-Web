@@ -78,52 +78,48 @@
               <!-- TABLE: LATEST ORDERS -->
               <div class="card no-align-items">
                 <div class="card-header border-transparent">
-                  <div class="card-header border-transparent d-flex align-items-center justify-content-between">
-                    <h3 class="card-title">Vos cartes</h3>
-                    <button  type="button" id="dropdownPrice" data-toggle="dropdown" aria-expanded="false" class="btn btn-outline-filtre waves-effect dropdown-toggle">
-                      Price
-                    </button>
-                    <div class="dropdown-menu">
-                      <div class="p-3 d-flex flex-column">
-                        <div class="d-flex justify-content-center">
-                          <span class="info-box-text fw-bold purple-mine">{{ value[0] }} € </span>
-                          <span class="info-box-text fw-bold px-2"> à </span>
-                          <span class="info-box-text fw-bold purple-mine"> {{ value[1] }} €</span>
+                  <div class="card-header border-transparent d-flex align-items-center">
+                    <div class="d-flex">
+                      <h3 class="card-title">Vos cartes</h3>
+                    </div>
+                    <div class="d-flex align-items-center ms-auto">
+                      <button  type="button" id="dropdownPrice" data-toggle="dropdown" aria-expanded="false" class="btn btn-outline-filtre waves-effect dropdown-toggle mb-0 mx-2">
+                        Price
+                      </button>
+                      <div class="dropdown-menu">
+                        <div class="p-3 d-flex flex-column">
+                          <div class="d-flex justify-content-center">
+                            <span class="info-box-text fw-bold purple-mine">{{ value[0] }} € </span>
+                            <span class="info-box-text fw-bold px-2"> à </span>
+                            <span class="info-box-text fw-bold purple-mine"> {{ value[1] }} €</span>
+                          </div>
+                          <vue-slider v-model="value" :width="500" :interval="5" :min="0" :max="1000" :tooltip-placement="['bottom', 'bottom']" :enable-cross="false" :process-style="{ backgroundColor: 'purple' }" :tooltip-style="{ backgroundColor: 'purple', borderColor: 'purple' }"></vue-slider>
                         </div>
-                        <vue-slider v-model="value" :width="500" :interval="5" :min="0" :max="1000" :tooltip-placement="['bottom', 'bottom']" :enable-cross="false" :process-style="{ backgroundColor: 'purple' }" :tooltip-style="{ backgroundColor: 'purple', borderColor: 'purple' }"></vue-slider>
-                      </div>
-                    </div>
-                                        
-                    <div class="form-group mb-0">
-                      <div class="input-group mt-0 align-items-center">
-                        <input type="search" v-model="this.keyword" class="form-control form-control" placeholder="Mot clé...">
-                        <div class="input-group-append align-items-center">
-                          <button type="submit" @on-click="updateKeyword" class="btn btn-default mb-0">
-                            <i class="fa fa-search"></i>
-                          </button>
+                      </div>              
+                      <div class="form-group mb-0 mx-2">
+                        <div class="input-group mt-0 align-items-center">
+                          <input type="search" v-model="this.keyword" class="form-control form-control" placeholder="Mot clé...">
+                          <div class="input-group-append align-items-center">
+                            <button type="submit" @on-click="updateKeyword" class="btn btn-default mb-0">
+                              <i class="fa fa-search"></i>
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="col-auto my-1">
-                      <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                      <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" v-model="statusFiltre">
-                        <option :selected="true" value="all">Tout les status</option>
-                        <option value="Accepted">Acceptée</option>
-                        <option value="Pending">En attente</option>
-                        <option value="Refused">Refusée</option>
-                      </select>
-                    </div>
+                      <div class="col-auto ">
+                        <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" v-model="statusFiltre">
+                          <option :selected="true" value="all">Tout les status</option>
+                          <option value="Accepted">Acceptée</option>
+                          <option value="Pending">En attente</option>
+                          <option value="Refused">Refusée</option>
+                        </select>
+                      </div>
+                    </div>    
                   </div>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body p-0">
-                              <pagination 
-          v-model="page" 
-          :records="500" 
-          :per-page="7" 
-          @paginate="list(this.page)"
-          :options="options">
-        </pagination> 
                   <div class="table-responsive">
                     <table class="table m-0">
                       <thead>
@@ -155,9 +151,7 @@
                   <!-- /.table-responsive -->
                 </div>
                 <!-- /.card-body -->
-                <div class="card-footer clearfix">
-                  <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All Orders</a>
-                </div>
+
                 <!-- /.card-footer -->
               </div>
               <!-- /.card -->
@@ -194,6 +188,23 @@ import MyPagination from '@/Components/Pagination.vue'
             money: null,
             keyword : '',
             value: [0, 1000],
+            options:{
+                format: true,
+                chunk: 1,
+                chunksNavigation:'scroll',
+                edgeNavigation: true,
+                theme:'bootstrap3',
+                template:MyPagination,
+                texts:{
+                    count:'Showing {from} to {to} of {count} records|{count} records|One record',
+                    first:'First',
+                    last:'Last',
+                    nextPage:'>',
+                    nextChunk:'>>',
+                    prevPage:'<',
+                    prevChunk:'<<'
+                }
+            }
         }
       },
       computed: {
@@ -215,7 +226,7 @@ import MyPagination from '@/Components/Pagination.vue'
       methods: {
         getAllCards() {
             axios.get(route('api.getListCard')).then((res) => {
-                this.cards = res.data.cards;
+                this.cards = res.data;
             });
         },
         getCardsStatus() {
@@ -232,7 +243,7 @@ import MyPagination from '@/Components/Pagination.vue'
         },
         updateKeyword() {
           console.log(this.keyword);
-        }
+        },
 
       },
     }

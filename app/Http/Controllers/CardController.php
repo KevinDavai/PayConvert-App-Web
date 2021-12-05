@@ -40,14 +40,8 @@ class CardController extends Controller
     public function getAllCardFromUser()
     {
         $user = User::find(Auth::id());
-        $cards = Card::where('user_id', $user->id)->get();
-        $response = [
-            'error' => false,
-            'message' => "Succes",
-            'cards' => $cards,
-        ];
-
-        return response($response, 200);
+        $cards = Card::orderBy('created_at', 'desc')->where('user_id', $user->id)->get();
+        return response()->json($cards);
     }
 
     public function getCardStatusFromUser()
