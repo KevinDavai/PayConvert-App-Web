@@ -356,18 +356,7 @@
                     {{ __('Log in') }}
                 </x-button>
 
-<<<<<<< HEAD
-                    <a class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-3 btn btn-secondary btn-SecondaryColor" href="{{ url('/auth/google/login') }}" role="button" style="text-transform:none">
-                        <img width="18px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
-                        Connexion avec google
-                    </a>
 
-                    <a class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-3 btn btn-secondary btn-SecondaryColor" href="{{ url('/auth/github/login') }}" role="button" style="text-transform:none">
-                        <img width="18px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
-                        Connexion avec github
-                    </a>
-
-=======
                 <hr class="hrwide">
 
                 <div class="flex items-center justify-end mt-4">
@@ -379,7 +368,6 @@
                         <span class="fab fa-github"></span>
                     </a>
                 </div>
->>>>>>> 9fd85ddcf2d2a5c510bb2007251eff6517d541b9
             </div>
         </form>
       </div>

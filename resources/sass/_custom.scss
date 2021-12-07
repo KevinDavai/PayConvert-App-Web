@@ -886,13 +886,9 @@ $duration: 1.4s;
     color: #7a7cb3 !important;
 }
 
-.responsive-logo {
-    display: none;
-}
-
 @media (min-width: 992px) {
     .responsive-logo {
-        display: block;
+        display: none;
     }
 }
 
