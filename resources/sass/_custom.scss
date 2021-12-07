@@ -380,15 +380,15 @@
 }
 
 .purplecolor {
-    color: #9395ce !important;
+    color: #d6d7ec !important;
 }
 
 .purplecolorbg {
-    background-color: #9395ce;
+    background-color: #d6d7ec;
 }
 
 .purplecolorbg:hover {
-    background-color: #d6d7ec;
+    background-color: #9395ce;
 }
 
 .navbar-collaps {
@@ -679,13 +679,13 @@ a.waves-light {
     color: #9395ce !important;
     background-color: transparent !important;
     border: 2px solid #9395ce !important;
-    padding: 0.55rem 1.05rem !important
+    padding: 0.55rem 1.05rem !important;
 }
 .btn-outline-filtre:hover {
     color: #7a7cb3 !important;
     background-color: transparent !important;
     border: 2px solid #7a7cb3 !important;
-    padding: 0.55rem 1.05rem !important
+    padding: 0.55rem 1.05rem !important;
 }
 
 .note {
@@ -728,6 +728,11 @@ $duration: 1.4s;
     transform-origin: center;
     animation: dash $duration ease-in-out infinite,
         colors ($duration * 4) ease-in-out infinite;
+}
+
+.btn-edit-cards-admin {
+    width: 40px !important;
+    height: 40px !important;
 }
 
 @keyframes colors {
@@ -879,4 +884,14 @@ $duration: 1.4s;
 
 .purple-mine {
     color: #7a7cb3 !important;
+}
+
+.responsive-logo {
+    display: none;
+}
+
+@media (min-width: 992px) {
+    .responsive-logo {
+      display: block;
+    }
 }

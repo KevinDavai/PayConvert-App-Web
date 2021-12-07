@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('dashboard', [AdminController::class, 'index'])->name('dashboard.index');
+Route::post('dashboard/editCard', [AdminController::class, 'editCard'])->name('dashboard.editCard');

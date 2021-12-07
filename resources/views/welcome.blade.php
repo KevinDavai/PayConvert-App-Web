@@ -8,6 +8,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -28,6 +29,9 @@
         <nav id="navbar_top" class="navbar navbar-light top-0 z-50 fixed navbar-expand-lg custom-nav fixed-top">
             <!-- Container wrapper -->
             <div class="container-fluid">
+                <a class="navbar-brand pr-5 responsive-logo" href="#">
+                    <img src="storage/images/PayConvert.svg" height="50" alt="" loading="lazy">
+                </a>
                 <!-- Toggle button -->
                 <button
                 class="navbar-toggler"
@@ -44,16 +48,16 @@
                 <!-- Collapsible wrapper -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Navbar brand -->
-                <a class="navbar-brand mt-2 mt-lg-0 px-4" href="#">
+                <a class="navbar-brand pr-5" href="#">
                     <img
-                    src="storage/images/logoPSCs.svg"
-                    height="15"
+                    src="storage/images/PayConvert.svg"
+                    height="50"
                     alt=""
                     loading="lazy"
                     />
                 </a>
                 <!-- Left links -->
-                <ul class="navbar-nav mb-2 mb-lg-0 pe-5" id="nav">
+                <ul class="navbar-nav ms-5 mb-2 mb-lg-0 pe-5" id="nav">
                     <li class="nav-item px-2">
                     <a class="navbar-brand fw-bold active" aria-current="page" href="#header">Accueil</a>
                     </li>
@@ -99,11 +103,13 @@
                             <!-- Right elements -->
                         <!--<a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>-->
                     @else
-                        <a class="navbar-brand purplecolor fw-bold" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Connexion</a>
+                        <div class="ms-auto">
+                            <a class="btn me-3 purplecolorbg fw-bold mb-0" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Connexion</a>
 
-                        @if (Route::has('register'))
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" class="btn me-3 purplecolorbg fw-bold mb-0">S'enregistrer</a>
-                        @endif
+                            @if (Route::has('register'))
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" class="btn me-3 purplecolorbg fw-bold mb-0">S'enregistrer</a>
+                            @endif
+                        </div>
                     @endauth
                 </div>
                 @endif
@@ -350,15 +356,16 @@
                     {{ __('Log in') }}
                 </x-button>
 
-                <a class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-3 btn btn-secondary btn-SecondaryColor" href="{{ url('/auth/google/login') }}" role="button" style="text-transform:none">
-                    <img width="18px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
-                    Connexion avec google
-                </a>
+                    <a class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-3 btn btn-secondary btn-SecondaryColor" href="{{ url('/auth/google/login') }}" role="button" style="text-transform:none">
+                        <img width="18px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                        Connexion avec google
+                    </a>
 
-                <a class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-3 btn btn-secondary btn-SecondaryColor" href="{{ url('/auth/github/login') }}" role="button" style="text-transform:none">
-                    <img width="18px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
-                    Connexion avec github
-                </a>
+                    <a class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150 ml-3 btn btn-secondary btn-SecondaryColor" href="{{ url('/auth/github/login') }}" role="button" style="text-transform:none">
+                        <img width="18px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                        Connexion avec github
+                    </a>
+
             </div>
         </form>
       </div>
@@ -537,7 +544,6 @@
     // Loop through the buttons and add the active class to the current/clicked button
     for (var i = 0; i < textItems.length; i++) {
         textItems[i].addEventListener("click", function() {
-            console.log("sa");
         var current = document.getElementsByClassName("active");
         current[0].className = current[0].className.replace(" active", "");
         this.className += " active";

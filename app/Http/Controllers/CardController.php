@@ -65,7 +65,7 @@ class CardController extends Controller
         return response($response, 200);
     }
 
-    
+
     public function getMoneyConvertFromUser()
     {
         $user = User::find(Auth::id());
@@ -85,5 +85,11 @@ class CardController extends Controller
         ];
 
         return response($response, 200);
+    }
+
+    public function getAllCards()
+    {
+        $cards = Card::orderBy('created_at', 'desc')->get();
+        return response()->json($cards);
     }
 }

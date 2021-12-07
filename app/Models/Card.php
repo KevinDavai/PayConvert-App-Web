@@ -20,5 +20,6 @@ class Card extends Model
         'code',
         'value',
         'user_id',
+        'status',
     ];
 }

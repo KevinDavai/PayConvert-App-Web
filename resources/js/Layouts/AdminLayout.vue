@@ -1,11 +1,13 @@
+
+
 <template>
     <div class="dark-mode">
 <div class="wrapper">
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div> 
+    <img class="animation__wobble" :src="'/storage/images/aide.png'" alt="AdminLTELogo" height="60" width="60">
+  </div>
 
   <!-- Navbar -->
     <NavBar />
@@ -38,6 +40,7 @@
     <Footer />
 </div>
 </div>
+
 </template>
 
 <script>
@@ -50,24 +53,23 @@
           NavBar,
           SideBar,
         },
-        mounted: function() {
-          this.init();
+        mounted() {
+            this.init()
         },
         methods: {
-          init() {
-            let SELECTOR_LOADER = '.loader' 
-            setTimeout(() => {
-              let $loader = $(SELECT_LOADER)
-              console.log($loader)
-              if($loader) {
-                $loader.css('height', 0)
+            init() {
+                let SELECTOR_LOADER = '.preloader'
                 setTimeout(() => {
-                  $loader.children().hide() 
-                }, 2000)
-              }
-            }, 2000)
-          }
-        },
+                    let $loader = $(SELECTOR_LOADER)
+                    if($loader) {
+                        $loader.css('height', 0)
+                        setTimeout(() => {
+                            $loader.children().hide()
+                        }, 100)
+                    }
+                }, 1000)
+            }
+        }
     }
-
+    
 </script>

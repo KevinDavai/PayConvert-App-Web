@@ -28995,15 +28995,15 @@ textarea.form-control-lg {
 }
 
 .purplecolor {
-  color: #9395ce !important;
+  color: #d6d7ec !important;
 }
 
 .purplecolorbg {
-  background-color: #9395ce;
+  background-color: #d6d7ec;
 }
 
 .purplecolorbg:hover {
-  background-color: #d6d7ec;
+  background-color: #9395ce;
 }
 
 .navbar-collaps {
@@ -29320,6 +29320,11 @@ label:not(.form-check-label):not(.custom-file-label) {
           animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
 }
 
+.btn-edit-cards-admin {
+  width: 40px !important;
+  height: 40px !important;
+}
+
 @-webkit-keyframes colors {
   0% {
     stroke: #4285f4;
@@ -29496,6 +29501,16 @@ label:not(.form-check-label):not(.custom-file-label) {
 
 .purple-mine {
   color: #7a7cb3 !important;
+}
+
+.responsive-logo {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .responsive-logo {
+    display: none;
+  }
 }
 
 

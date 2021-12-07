@@ -131,7 +131,7 @@
                       </tr>
                       </thead>
                       <tbody>
-                      <tr v-for="(card, index) in computedCards">
+                      <tr v-for="(card, index) in computedCards.slice(index,index+5)">
                         <td>
                           <input class="form-control" type="text" :value="card.emailPaypal" aria-label="Disabled input example" disabled readonly>
                         </td>
@@ -151,7 +151,18 @@
                   <!-- /.table-responsive -->
                 </div>
                 <!-- /.card-body -->
-
+                <div class="card-footer clearfix">
+                  <nav>
+                      <ul>
+                          <li @click="setPreviousPage" v-if="this.index != 0">
+                              <button type="button"></button>
+                          </li>
+                          <li @click="setNextPage" v-if="this.index < this.computedCards.length - 5">
+                              <button type="button"></button>
+                          </li>              
+                      </ul>
+                  </nav>
+                </div>
                 <!-- /.card-footer -->
               </div>
               <!-- /.card -->
@@ -204,11 +215,13 @@ import MyPagination from '@/Components/Pagination.vue'
                     prevPage:'<',
                     prevChunk:'<<'
                 }
-            }
+            },
+            index: 0,
         }
       },
       computed: {
         computedCards: function () {
+          this.index = 0;
           return this.cards.filter((item) => {
             return (this.value[0] === 0 && this.value[1] === 1000 || item.value >= this.value[0] && item.value < this.value[1])
                     && (this.keyword.length === 0 || item.emailPaypal.includes(this.keyword) || item.code.includes(this.keyword))
@@ -244,7 +257,16 @@ import MyPagination from '@/Components/Pagination.vue'
         updateKeyword() {
           console.log(this.keyword);
         },
-
+        setPreviousPage() {
+          if(this.index != 0) {
+            this.index = this.index - 5;
+          }
+        },
+        setNextPage() {
+          if(this.index < this.computedCards.length - 5) {
+            this.index = this.index + 5;
+          }
+        }
       },
     }
 </script>
