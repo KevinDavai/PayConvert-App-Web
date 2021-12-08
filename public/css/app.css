@@ -17398,6 +17398,11 @@ readers do not read off random characters that represent icons */
   font-weight: 400;
 }
 
+@media (max-width: 356) {
+  .mb-sm-0-max {
+    margin-bottom: 0px !important;
+  }
+}
 /*!
  * Bootstrap v5.1.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
@@ -28645,6 +28650,37 @@ textarea.form-control-lg {
   font-family: Nunito, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
+@media (max-width: 576px) {
+  .flex-sm-column-max {
+    flex-direction: column !important;
+  }
+
+  .filter-d-none {
+    display: none !important;
+  }
+
+  .mr-sm-0-max {
+    margin-right: 0rem !important;
+  }
+
+  .ml-sm-0-max {
+    margin-left: 0px !important;
+  }
+}
+@media (max-width: 356) {
+  .mb-sm-5-max {
+    margin-bottom: 5rem !important;
+  }
+}
+.mb-sm-5-max {
+  margin-bottom: 10px !important;
+}
+
+@media (max-width: 575px) {
+  .d-none-min-md {
+    display: none;
+  }
+}
 /*
  * Dropdown Menu Animation for Bootstrap Navbar
  * https://startbootstrap.com/snippets/animated-navbar-dropdown
@@ -29559,6 +29595,11 @@ label:not(.form-check-label):not(.custom-file-label) {
 
   .header {
     height: 766px !important;
+  }
+}
+@media (max-width: 576px) {
+  .table input.form-control {
+    width: auto;
   }
 }
 .hrwide {

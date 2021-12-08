@@ -10,6 +10,14 @@
 @import "~@fortawesome/fontawesome-free/scss/regular";
 @import "~@fortawesome/fontawesome-free/scss/solid";
 @import "~@fortawesome/fontawesome-free/scss/brands";
+
+// Edit Boostrap
+@media (max-width: 356) {
+    .mb-sm-0-max {
+        margin-bottom: 0px !important;
+    }
+}
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 

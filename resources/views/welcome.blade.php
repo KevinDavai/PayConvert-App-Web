@@ -317,22 +317,9 @@
 
         <!-- Section: Social media -->
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 d-flex align-items-center pb-5 social-link-footer justify-content-center">        <!-- Facebook -->
-        <a class="btn btn-dark btn-outline-light border-1 border-dark btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-facebook-f"></i
-        ></a>
-  
-        <!-- Twitter -->
-        <a class="btn btn-dark btn-outline-light border-1 border-dark btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-twitter"></i
-        ></a>
-  
-        <!-- Linkedin -->
-        <a class="btn btn-dark btn-outline-light border-1 border-dark btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-linkedin-in"></i
-        ></a>
   
         <!-- Github -->
-        <a class="btn btn-dark btn-outline-light border-1 border-dark btn-floating m-1" href="#!" role="button"
+        <a class="btn btn-dark btn-outline-light border-1 border-dark btn-floating m-1" href="https://github.com/KevinDavai/PayConvert-App-Web" role="button"
           ><i class="fab fa-github"></i
         ></a>
       </div>
