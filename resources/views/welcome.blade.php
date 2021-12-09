@@ -351,7 +351,6 @@
             @csrf
             
             @if ($errors->any())
-                <p>{{$errors}}</p>
                 <div class="alert alert-danger">
                         @foreach ($errors->all() as $error)
                              <strong>{{ $error }}</strong>
