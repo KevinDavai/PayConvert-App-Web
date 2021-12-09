@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>PayConvert</title>
-
+        <title>PAYCONVERT | Convertissez vos codes paysafecard vers paypal</title>
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet'>
@@ -81,7 +81,7 @@
             <!-- Container wrapper -->
             <div class="container-fluid">
                 <a class="navbar-brand pr-5 responsive-logo" href="#">
-                    <img src="storage/images/PayConvert.svg" height="50" alt="" loading="lazy">
+                    <img src="storage/images/PayConvert.svg" height="50" alt="PAYCONVERT LOGO" loading="lazy">
                 </a>
                 <!-- Toggle button -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas">
@@ -94,7 +94,7 @@
                     <img
                     src="storage/images/PayConvert.svg"
                     height="50"
-                    alt=""
+                    alt="PAYCONVERT LOGO"
                     loading="lazy"
                     />
                 </a>
@@ -130,7 +130,7 @@
                                 data-bs-toggle="dropdown"
                                 aria-expanded="false"
                                 >
-                                <img class="rounded-circle" alt="" loading="lazy" src="storage/upload/avatars/{{ Auth::user()->avatar }}" style="height:32px;">
+                                <img class="rounded-circle" alt="PAYCONVERT AVATAR" loading="lazy" src="storage/upload/avatars/{{ Auth::user()->avatar }}" style="height:32px;">
                                 </a>
 
                                     <div class="dropdown-menu" aria-labelledby="profil-Admin">
