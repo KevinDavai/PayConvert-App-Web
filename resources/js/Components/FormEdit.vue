@@ -95,7 +95,6 @@ export default {
     },
     mounted: function() {
         var vm = this;
-        console.log(vm.modalID);
         $(document).ready(function(){
             $(vm.modalID).on('hidden.bs.modal ', function (e) {
                 console.log(vm.modalID + "has closed")

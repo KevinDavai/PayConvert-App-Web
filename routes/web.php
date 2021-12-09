@@ -49,5 +49,7 @@ Route::get('/dashboard/get_userDetails', [UserController::class, 'get_userProfil
 // Cards
 Route::get('dashboard/cards_status', [CardController::class, 'getCardStatusFromUser'])->middleware('auth')->name('cards_get_statusFromUser');
 Route::get('dashboard/cards_money', [CardController::class, 'getMoneyConvertFromUser'])->middleware('auth')->name('cards_get_moneyFromUser');
+Route::get('dashboard/cardslist', [CardController::class, 'getAllCardFromUser'])->middleware('auth')->name('api.getListCard');
+Route::get('dashboard/cardsAllList', [CardController::class, 'getAllCards'])->middleware('auth')->name('api.getAllCard');
 
 require __DIR__ . '/auth.php';

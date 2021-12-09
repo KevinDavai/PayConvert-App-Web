@@ -26,15 +26,6 @@ Route::prefix('v1/users')->group(function () { // Collection user
 });
 
 
-
-/////////////////////////////////////////////////////
-// TEST TODO: REWRITE LES ROUTES
-////////////////////////////////////////////////////
-Route::get('/cardslist', [CardController::class, 'getAllCardFromUser'])->middleware('auth')->name('api.getListCard');
-Route::get('/cardsAllList', [CardController::class, 'getAllCards'])->middleware('auth')->name('api.getAllCard');
-
-
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

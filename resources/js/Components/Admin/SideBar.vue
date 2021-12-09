@@ -12,7 +12,7 @@
       <div class="sidebar-user p-3">
         <div class="image">
           <img :src="'../storage/upload/avatars/' + `${ $page.props.user.avatar }`" class="img-circle elevation-2" alt="User Image">
-        </div>
+        </div>  
         <div class="info pt-2">
           <a href="#" class="d-block">{{ $page.props.user.username }}</a>
         </div>

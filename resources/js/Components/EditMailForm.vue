@@ -71,7 +71,6 @@ export default {
             this.post(route('profile.update.email'), this.formData)
          },   
         emitToParent (value) {
-            console.log(value);
             this.$emit('childToParent', value)
         }
     },  

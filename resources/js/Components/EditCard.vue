@@ -55,7 +55,6 @@ export default {
     components: { FormEdit },
     name: 'EditMailForm',
     mixins: [FormEdit],
-    emits: ["childToParent"],
     data(){
         return{
             modalID: '#emailModal',
@@ -70,16 +69,11 @@ export default {
         storeEmail(){
             this.post(route('profile.update.email'), this.formData)
          },   
-        emitToParent (value) {
-            console.log(value);
-            this.$emit('childToParent', value)
-        }
     },  
     computed: {
         csrf() {
             return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         },
     }, 
-     
 }
 </script>

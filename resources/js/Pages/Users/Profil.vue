@@ -132,9 +132,7 @@ import EditPasswordForm from "@/components/EditPasswordForm";
         methods: {
             getUserDetails() {
                 axios.get(route('get_userProfil')).then((res) => {
-                    console.log(this.user);
                     this.user = res.data.user;
-                    console.log(res.data.user);
 
                 });
             },
