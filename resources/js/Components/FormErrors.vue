@@ -25,6 +25,11 @@ export default {
             return this.errors[fieldName][0];
         },
 
+        checkIfError(){
+            let size = Object.keys(this.errors).length;
+            return size;
+        },
+
         clearError(event){
             delete this.errors[event.target.name];
         },

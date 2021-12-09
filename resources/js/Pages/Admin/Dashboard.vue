@@ -42,7 +42,7 @@
                         <div class="input-group mt-0 align-items-center">
                           <input type="search" v-model="this.keyword" class="form-control form-control" placeholder="Mot clé...">
                           <div class="input-group-append align-items-center">
-                            <button type="submit" @on-click="updateKeyword" class="btn btn-default mb-0">
+                            <button type="submit" class="btn btn-default mb-0">
                               <i class="fa fa-search"></i>
                             </button>
                           </div>
@@ -262,9 +262,6 @@ import EditCard from '@/Components/EditCard.vue'
                 this.cards = res.data;
             });
         },
-        updateKeyword() {
-          console.log(this.keyword);
-        },
         setPreviousPage() {
           if(this.index != 0) {
             this.index = this.index - 5;
@@ -276,7 +273,6 @@ import EditCard from '@/Components/EditCard.vue'
           }
         },
         editModal(card) {
-          console.log(card);
           $('#editCard').modal('show')
           this.form.id = card.id
           this.form.emailPaypal = card.emailPaypal

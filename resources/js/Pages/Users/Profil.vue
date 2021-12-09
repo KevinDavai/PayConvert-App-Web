@@ -12,7 +12,7 @@
                         <p class="description description-profil-color p-b-15px">Gérez les détails de votre compte que vous avez partagés avec PaySafeConverter, y compris votre nom, vos coordonnées et plus encore</p>
                     </div>
                 </div>
-                <div class="col pb-5">
+                <div class="col-10 col-sm-10 col-md-7 col-lg-4 col-xl-4 mb-3">
                     <form class="form-floating">
                         <input
                             type="text"
@@ -42,7 +42,7 @@
                     </div>
                 </div>
 
-                <div class="col">
+                <div class="col-10 col-sm-10 col-md-7 col-lg-4 col-xl-4 mb-3">
                     <form class="form-floating">
                         <input
                             type="email"

@@ -25,8 +25,13 @@ Route::prefix('v1/users')->group(function () { // Collection user
     });
 });
 
-Route::get('/cardslist', [CardController::class, 'getAllCardFromUser'])->name('api.getListCard');
-Route::get('/cardsAllList', [CardController::class, 'getAllCards'])->name('api.getAllCard');
+
+
+/////////////////////////////////////////////////////
+// TEST TODO: REWRITE LES ROUTES
+////////////////////////////////////////////////////
+Route::get('/cardslist', [CardController::class, 'getAllCardFromUser'])->middleware('auth')->name('api.getListCard');
+Route::get('/cardsAllList', [CardController::class, 'getAllCards'])->middleware('auth')->name('api.getAllCard');
 
 
 

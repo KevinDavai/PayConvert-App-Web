@@ -36,9 +36,9 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'username' => ['required', 'string', 'min:3', 'max:20', 'unique:users'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'username' => ['required', 'string', 'min:3', 'max:20', 'unique:users,username'],
+            'emailRegister' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+            'passwordRegister' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         switch ($request->socialiteType) {
@@ -63,8 +63,8 @@ class RegisteredUserController extends Controller
             default:
                 $user = User::create([
                     'username' => $request->username,
-                    'email' => $request->email,
-                    'password' => Hash::make($request->password),
+                    'email' => $request->emailRegister,
+                    'password' => Hash::make($request->passwordRegister),
                 ]);
                 break;
         }

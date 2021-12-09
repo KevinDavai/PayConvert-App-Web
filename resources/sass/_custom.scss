@@ -12,6 +12,40 @@
         "Segoe UI Symbol", "Noto Color Emoji";
 }
 
+@media (max-width: 576px) {
+    .flex-sm-column-max {
+        -webkit-flex-direction: column!important;
+        -ms-flex-direction: column!important;
+        flex-direction: column !important;
+    }
+    .filter-d-none {
+        display: none !important;
+    }
+    .mr-sm-0-max {
+        margin-right: 0rem!important;
+    }
+    .ml-sm-0-max {
+        margin-left: 0px !important;
+    }
+}
+
+@media (max-width: 356) {
+    .mb-sm-5-max {
+        margin-bottom: 5rem !important;
+    }
+}
+
+.mb-sm-5-max {
+    margin-bottom: 10px!important;
+}
+
+@media (max-width: 575px) {
+    .d-none-min-md {
+        display: none;
+    }
+}
+
+
 /*
  * Dropdown Menu Animation for Bootstrap Navbar
  * https://startbootstrap.com/snippets/animated-navbar-dropdown
@@ -516,7 +550,7 @@
 #service-bg {
     background: url(../../public/storage/images/formes.svg) center center
         no-repeat;
-    background-size: 80%;
+    background-size: 70%;
     background-position: top;
 }
 
@@ -886,11 +920,76 @@ $duration: 1.4s;
     color: #7a7cb3 !important;
 }
 
+.cursor-pointer {
+    cursor: pointer;
+ }
+
 @media (min-width: 992px) {
     .responsive-logo {
         display: none;
     }
 }
+
+@media (max-width: 992px) {
+    #middle-card {
+        margin-top: 0px;
+        margin-bottom: 2rem;
+    }
+    #service-bg {
+        background: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    footer .social-link-footer {
+        padding-bottom: 0px !important;
+        margin-top: 1rem;
+        margin-bottom: 0px !important;
+    }
+
+    footer .contact-footer {
+        margin-top: 1.5rem !important;
+    }
+
+    footer .desc-payconvert {
+        margin-bottom: 0px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-collaps {
+        padding: 0.5rem 2rem 0.5rem 2rem;
+    }
+}
+
+@media (max-width: 1300px) {
+    #service-bg {
+        background-size: 100% !important;
+    }
+}
+
+@media (min-width: 1700px) {
+    #service-bg {
+        background-size: 60% !important;
+    }
+    .header {
+        height: 766px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .table input.form-control {
+        width: auto;
+    }
+}
+
+
 
 .hrwide {
     width: 100%;

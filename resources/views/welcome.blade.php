@@ -24,8 +24,59 @@
         </style>
     </head>
     <body class="antialiased bg-white">
-
-
+        <div class="offcanvas offcanvas-end btn-SecondaryColor" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false" style="width: 50%">
+            <div class="offcanvas-header">
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body px-0">
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start" id="menu">
+                    <li class="nav-item">
+                        <a href="#header" class="nav-link text-truncate">
+                            <i class="fs-5 bi-house"></i><span class="ms-1 text-white fw-bold">Accueil</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#service" class="nav-link text-truncate">
+                            <i class="fs-5 bi-speedometer2"></i><span class="ms-1 text-white fw-bold">A Propos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#footer" class="nav-link text-truncate">
+                            <i class="fs-5 bi-table"></i><span class="ms-1 text-white fw-bold">Contact</span>
+                        </a>
+                    </li>
+                    @if (Route::has('login'))
+                        @auth
+                            <li>
+                                <a href="/dashboard" class="nav-link text-truncate">
+                                    <span class="btn me-3 purplecolorbg fw-bold mb-0 ms-1 secondarycolor fw-bold">Convertir</span>
+                                </a>
+                            </li>
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <a class="nav-link text-truncate" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
+                                        <span class="btn me-3 purplecolorbg fw-bold mb-0 ms-1 secondarycolor fw-bold">Déconnexion</span> 
+                                    </a>
+                                </form>
+                            </li>
+                
+                        @else
+                            <li>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" class="nav-link text-truncate">
+                                <i class="fs-5 bi-table"></i><span class="btn me-3 purplecolorbg fw-bold mb-0 ms-1 secondarycolor  fw-bold">Connexion</span></a>
+                            </li>
+                            @if (Route::has('register'))
+                                <li>
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" class="nav-link text-truncate">
+                                    <i class="fs-5 bi-speedometer2"></i><span class="btn me-3 purplecolorbg fw-bold mb-0 ms-1 secondarycolor fw-bold">S'enregistrer</span> </a>
+                                </li>                    
+                @endif
+                </ul>
+                @endauth
+            </div>
+                @endif
+        </div>
         <nav id="navbar_top" class="navbar navbar-light top-0 z-50 fixed navbar-expand-lg custom-nav fixed-top">
             <!-- Container wrapper -->
             <div class="container-fluid">
@@ -33,18 +84,9 @@
                     <img src="storage/images/PayConvert.svg" height="50" alt="" loading="lazy">
                 </a>
                 <!-- Toggle button -->
-                <button
-                class="navbar-toggler"
-                type="button"
-                data-mdb-toggle="collapse"
-                data-mdb-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-                >
-                <i class="fas fa-bars"></i>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <!-- Collapsible wrapper -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Navbar brand -->
@@ -57,7 +99,7 @@
                     />
                 </a>
                 <!-- Left links -->
-                <ul class="navbar-nav ms-5 mb-2 mb-lg-0 pe-5" id="nav">
+                <ul class="navbar-nav ms-5 mb-2 mb-lg-0 pe-5 align-items-center" id="nav">
                     <li class="nav-item px-2">
                     <a class="navbar-brand fw-bold active" aria-current="page" href="#header">Accueil</a>
                     </li>
@@ -66,6 +108,11 @@
                     </li>
                     <li class="nav-item px-2">
                     <a class="navbar-brand fw-bold" href="#footer">Contact</a>
+                    </li>
+                    <li class="nav-item px-2">
+                            <a class="nav-link hrvbig text-white cursor-pointer" onclick='javascript:(function(){function c(){var e=document.createElement("link");e.setAttribute("type","text/css");e.setAttribute("rel","stylesheet");e.setAttribute("href",f);e.setAttribute("class",l);document.body.appendChild(e)}function h(){var e=document.getElementsByClassName(l);for(var t=0;t<e.length;t++){document.body.removeChild(e[t])}}function p(){var e=document.createElement("div");e.setAttribute("class",a);document.body.appendChild(e);setTimeout(function(){document.body.removeChild(e)},100)}function d(e){return{height:e.offsetHeight,width:e.offsetWidth}}function v(i){var s=d(i);return s.height>e&&s.height<n&&s.width>t&&s.width<r}function m(e){var t=e;var n=0;while(!!t){n+=t.offsetTop;t=t.offsetParent}return n}function g(){var e=document.documentElement;if(!!window.innerWidth){return window.innerHeight}else if(e&&!isNaN(e.clientHeight)){return e.clientHeight}return 0}function y(){if(window.pageYOffset){return window.pageYOffset}return Math.max(document.documentElement.scrollTop,document.body.scrollTop)}function E(e){var t=m(e);return t>=w&&t<=b+w}function S(){var e=document.createElement("audio");e.setAttribute("class",l);e.src=i;e.loop=false;e.addEventListener("canplay",function(){setTimeout(function(){x(k)},500);setTimeout(function(){N();p();for(var e=0;e<O.length;e++){T(O[e])}},15500)},true);e.addEventListener("ended",function(){N();h()},true);e.innerHTML=" <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";document.body.appendChild(e);e.play()}function x(e){e.className+=" "+s+" "+o}function T(e){e.className+=" "+s+" "+u[Math.floor(Math.random()*u.length)]}function N(){var e=document.getElementsByClassName(s);var t=new RegExp("\\b"+s+"\\b");for(var n=0;n<e.length;){e[n].className=e[n].className.replace(t,"")}}var e=30;var t=30;var n=350;var r=350;var i="//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";var s="mw-harlem_shake_me";var o="im_first";var u=["im_drunk","im_baked","im_trippin","im_blown"];var a="mw-strobe_light";var f="//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";var l="mw_added_css";var b=g();var w=y();var C=document.getElementsByTagName("*");var k=null;for(var L=0;L<C.length;L++){var A=C[L];if(v(A)){if(E(A)){k=A;break}}}if(A===null){console.warn("Could not find a node of the right size. Please try a different page.");return}c();S();var O=[];for(var L=0;L<C.length;L++){var A=C[L];if(v(A)){O.push(A)}}})()'>
+                                NE PAS CLIQUER
+                            </a>
                     </li>
                 </ul>
                 <!-- Left links -->
@@ -85,21 +132,21 @@
                                 >
                                 <img class="rounded-circle" alt="" loading="lazy" src="storage/upload/avatars/{{ Auth::user()->avatar }}" style="height:32px;">
                                 </a>
-                                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                <li>
-                                    <a class="dropdown-item" href="#"><i class="fas fa-dollar-sign"></i>Convertir</a>
-                                </li>
-                                <li>
-                                    <form method="POST" action="{{ route('logout') }}">
-                                         @csrf
-                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();"><i class="fas fa-sign-out-alt"></i>Deconnexion</a>
-                                    </form>
-                                    
-                                </li>
-                                </ul>
-                            </li>
-                            </ul>
-                    </div>
+
+                                    <div class="dropdown-menu" aria-labelledby="profil-Admin">
+
+                                                                            <!-- Administration -->
+                                            <a href="/dashboard" class="dropdown-item text-black"><i class="fas fa-dollar-sign"></i> Convertir</a>
+                                            <div class="dropdown-divider"></div>
+
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf
+                                                <a class="dropdown-item text-black" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();"><i class="fas fa-sign-out-alt"></i>Se déconnecter</a>
+                                            </form>
+                                        
+
+                                    </div>
+                            </div>
                             <!-- Right elements -->
                         <!--<a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>-->
                     @else
@@ -158,7 +205,7 @@
             <div class="container">
     
                 <!-- Row -->
-                <div class="row">
+                <div class="row justify-content-center">
     
                     <!-- Section header -->
                     <div class="col-lg-12 text-center">
@@ -168,7 +215,7 @@
                     <!-- /Section header -->
 
                     <div class="row justify-content-center">
-                        <div class="col-md-3">
+                        <div class="col-md-5 col-lg-4 col-xl-3">
                             <div class="card text-center border0 shadow-cards card-width-radius zoom">
                                 <div class="card-body">
                                     <div class="circle-image mt-4" id="circleimg-card-1">
@@ -181,7 +228,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-5 col-lg-4 col-xl-3">
                             <div class="card text-center border0 shadow-cards card-width-radius zoom" id="middle-card">
                                 <div class="card-body">
                                     <div class="circle-image mt-4" id="circleimg-card-2">
@@ -194,7 +241,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-5 col-lg-4 col-xl-3">
                             <div class="card text-center border0 shadow-cards card-width-radius zoom">
                                 <div class="card-body">
                                     <div class="circle-image mt-4" id="circleimg-card-3">
@@ -221,7 +268,7 @@
         </div>
 
 <!-- Footer -->
-<footer class="text-center text-lg-start text-muted" id="footer">
+<footer class="text-center text-lg-start text-muted" id="footer" style="padding-top: 7rem;">
     <!-- Section: Social media -->
     <section
       class="d-flex justify-content-center justify-content-lg-between p-4 "
@@ -237,7 +284,7 @@
         <!-- Grid row -->
         <div class="row mt-10 align-items-end text-dark">
           <!-- Grid column -->
-          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4 text-center">
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 text-center mt-10 desc-payconvert">
             <!-- Content -->
             <h6 class="text-uppercase fw-bold mb-4">
                 <i class="fas fa-credit-card me-2"></i>PayConvert
@@ -252,7 +299,7 @@
          
   
           <!-- Grid column -->
-          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 text-center mt-10">
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 text-center mt-10 contact-footer">
             <!-- Links -->
             <h6 class="text-uppercase fw-bold mb-4">
               Contact
@@ -260,30 +307,16 @@
             <p><i class="fas fa-home me-3"></i>Le Puy-en-Velay, FR</p>
             <p>
               <i class="fas fa-envelope me-3"></i>
-              Contact@PayConvert.com
+              contact@payconvert.fr
             </p>
-            <p><i class="fas fa-phone me-3"></i> + 33 04 71 09 90 80</p>
             <!--<p><i class="fas fa-print me-3"></i> Null</p>-->
           </div>
 
         <!-- Section: Social media -->
-        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 d-flex align-items-center pb-5">        <!-- Facebook -->
-        <a class="btn btn-dark btn-outline-light border-1 border-dark btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-facebook-f"></i
-        ></a>
-  
-        <!-- Twitter -->
-        <a class="btn btn-dark btn-outline-light border-1 border-dark btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-twitter"></i
-        ></a>
-  
-        <!-- Linkedin -->
-        <a class="btn btn-dark btn-outline-light border-1 border-dark btn-floating m-1" href="#!" role="button"
-          ><i class="fab fa-linkedin-in"></i
-        ></a>
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4 d-flex align-items-center pb-5 social-link-footer justify-content-center">        <!-- Facebook -->
   
         <!-- Github -->
-        <a class="btn btn-dark btn-outline-light border-1 border-dark btn-floating m-1" href="#!" role="button"
+        <a class="btn btn-dark btn-outline-light border-1 border-dark btn-floating m-1" href="https://github.com/KevinDavai/PayConvert-App-Web" role="button"
           ><i class="fab fa-github"></i
         ></a>
       </div>
@@ -306,7 +339,6 @@
   <!-- Footer -->
 
 
-  !-- Modal -->
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -319,6 +351,7 @@
             @csrf
             
             @if ($errors->any())
+                <p>{{$errors}}</p>
                 <div class="alert alert-danger">
                         @foreach ($errors->all() as $error)
                              <strong>{{ $error }}</strong>
@@ -405,30 +438,30 @@
 
             <!-- Email Address -->
             <div class="block mt-4">
-                <x-label for="email" :value="__('Email')" />
+                <x-label for="emailRegister" :value="__('Email')" />
                 @if(!empty(Session::get('google_link')) && Session::get('google_link') == 5)
-                    <input id="email" type="email" class="block mt-1 w-full form-control @error('email') is-invalid @enderror" name="email" value="{{ Session::get('mail') }}" autocomplete="email" autofocus readonly>
+                    <input id="emailRegister" type="email" class="block mt-1 w-full form-control @error('emailRegister') is-invalid @enderror" name="emailRegister" value="{{ Session::get('mail') }}" autocomplete="emailRegister" autofocus readonly>
                 @elseif(!empty(Session::get('github_link')) && Session::get('github_link') == 5)
-                    <input id="email" type="email" class="block mt-1 w-full form-control @error('email') is-invalid @enderror" name="email" value="{{ Session::get('mail') }}" autocomplete="email" autofocus readonly>
+                    <input id="emailRegister" type="email" class="block mt-1 w-full form-control @error('emailRegister') is-invalid @enderror" name="emailRegister" value="{{ Session::get('mail') }}" autocomplete="emailRegister" autofocus readonly>
                 @else  
-                    <input id="email" type="email" class="block mt-1 w-full form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                    <input id="emailRegister" type="email" class="block mt-1 w-full form-control @error('emailRegister') is-invalid @enderror" name="emailRegister" value="{{ old('email') }}" required autocomplete="emailRegister" autofocus>
                 @endif
             </div>
 
             <!-- Password -->
             <div class="block mt-4">
-                <x-label for="password" :value="__('Password')" />
+                <x-label for="passwordRegister" :value="__('Password')" />
 
-                <input id="password" type="password" class="block mt-1 w-full form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                <input id="passwordRegister" type="password" class="block mt-1 w-full form-control @error('passwordRegister') is-invalid @enderror" name="passwordRegister" required autocomplete="current-password">
             </div>
 
             <!-- Confirm Password -->
             <div class="block mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
+                <x-label for="passwordRegister_confirmation" :value="__('Confirm Password')" />
 
-                <input id="password_confirmation" class="block mt-1 w-full form-control"
+                <input id="passwordRegister_confirmation" class="block mt-1 w-full form-control"
                                 type="password"
-                                name="password_confirmation" required />
+                                name="passwordRegister_confirmation" required />
             </div>
 
             @if(!empty(Session::get('google_link')) && Session::get('google_link') == 5)
@@ -475,56 +508,61 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    <script src="{{ asset('js/app.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>   
 
+        @if($errors->has('email') || $errors->has('password'))
+            <script>
+                $(function() {
+                    $('#loginModal').modal('show');
+                });
+            </script>
+        @endif
 
-@if($errors->has('email') || $errors->has('password'))
-    <script>
-    $(function() {
-                    console.log("sa");
+        @if($errors->has('emailRegister') || $errors->has('passwordRegister') || $errors->has('username') || $errors->has('password_confirmation'))
+            <script>
+                $(function() {
+                    $('#registerModal').modal('show');
+                });
+            </script>
+        @endif
 
-        $('#loginModal').modal('show');
-    });
-    </script>
-@endif
+        @if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
+            <script>
+                $(function() {
+                    $('#loginModal').modal('show');
+                });
+            </script>
+        @endif
 
-@if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
-<script>
-    $(function() {
-                    console.log("sa");
+        @if(!empty(Session::get('error_code')) && Session::get('error_code') == 6)
+            <script>
+                $(function() {       
+                    $('#registerModal').modal('show');
+                });
+            </script>
+        @endif
 
-        $('#loginModal').modal('show');
-    });
-</script>
-@endif
+        @if(!empty(Session::get('google_link')) && Session::get('google_link') == 5)
+            <script>
+                $(function() {
+                    $('#registerModal').modal('show');
+                });
+                $('#registerModal').on('hidden.bs.modal ', function (e) {
+                            location.reload();
+                })
+            </script>
+        @endif
 
-@if(!empty(Session::get('google_link')) && Session::get('google_link') == 5)
-<script>
-    $(function() {
-        $('#registerModal').modal('show');
-    });
-
-    $('#registerModal').on('hidden.bs.modal ', function (e) {
-                location.reload();
-
-
-    })
-</script>
-@endif
-
-@if(!empty(Session::get('github_link')) && Session::get('github_link') == 5)
-<script>
-    $(function() {
-        $('#registerModal').modal('show');
-    });
-
-    $('#registerModal').on('hidden.bs.modal ', function (e) {
-                location.reload();
-
-
-    })
-</script>
-@endif
+        @if(!empty(Session::get('github_link')) && Session::get('github_link') == 5)
+            <script>
+                $(function() {
+                    $('#registerModal').modal('show');
+                });
+                $('#registerModal').on('hidden.bs.modal ', function (e) {
+                            location.reload();
+                })
+            </script>
+        @endif
     </body>
 </html>
 
@@ -539,6 +577,7 @@
           } 
       });
     }); 
+
 
     // Get the container element
     var textItems = document.getElementsByClassName("navbar-brand");

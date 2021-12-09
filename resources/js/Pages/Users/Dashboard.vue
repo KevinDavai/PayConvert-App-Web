@@ -82,40 +82,42 @@
                     <div class="d-flex">
                       <h3 class="card-title">Vos cartes</h3>
                     </div>
-                    <div class="d-flex align-items-center ms-auto">
-                      <button  type="button" id="dropdownPrice" data-toggle="dropdown" aria-expanded="false" class="btn btn-outline-filtre waves-effect dropdown-toggle mb-0 mx-2">
-                        Price
-                      </button>
-                      <div class="dropdown-menu">
-                        <div class="p-3 d-flex flex-column">
-                          <div class="d-flex justify-content-center">
-                            <span class="info-box-text fw-bold purple-mine">{{ value[0] }} € </span>
-                            <span class="info-box-text fw-bold px-2"> à </span>
-                            <span class="info-box-text fw-bold purple-mine"> {{ value[1] }} €</span>
+                    <div class="filter-d-none ms-auto">
+                      <div class="d-flex align-items-center flex-sm-column-max">
+                        <button  type="button" id="dropdownPrice" data-toggle="dropdown" aria-expanded="false" class="btn btn-outline-filtre waves-effect dropdown-toggle mb-0 mx-2">
+                          Price
+                        </button>
+                        <div class="dropdown-menu">
+                          <div class="p-3 d-flex flex-column">
+                            <div class="d-flex justify-content-center">
+                              <span class="info-box-text fw-bold purple-mine">{{ value[0] }} € </span>
+                              <span class="info-box-text fw-bold px-2"> à </span>
+                              <span class="info-box-text fw-bold purple-mine"> {{ value[1] }} €</span>
+                            </div>
+                            <vue-slider v-model="value" :width="500" :interval="5" :min="0" :max="1000" :tooltip-placement="['bottom', 'bottom']" :enable-cross="false" :process-style="{ backgroundColor: 'purple' }" :tooltip-style="{ backgroundColor: 'purple', borderColor: 'purple' }"></vue-slider>
                           </div>
-                          <vue-slider v-model="value" :width="500" :interval="5" :min="0" :max="1000" :tooltip-placement="['bottom', 'bottom']" :enable-cross="false" :process-style="{ backgroundColor: 'purple' }" :tooltip-style="{ backgroundColor: 'purple', borderColor: 'purple' }"></vue-slider>
-                        </div>
-                      </div>              
-                      <div class="form-group mb-0 mx-2">
-                        <div class="input-group mt-0 align-items-center">
-                          <input type="search" v-model="this.keyword" class="form-control form-control" placeholder="Mot clé...">
-                          <div class="input-group-append align-items-center">
-                            <button type="submit" @on-click="updateKeyword" class="btn btn-default mb-0">
-                              <i class="fa fa-search"></i>
-                            </button>
+                        </div>              
+                        <div class="form-group mb-0 mx-2">
+                          <div class="input-group mt-0 align-items-center">
+                            <input type="search" v-model="this.keyword" class="form-control form-control" placeholder="Mot clé...">
+                            <div class="input-group-append align-items-center">
+                              <button type="submit" @on-click="updateKeyword" class="btn btn-default mb-0">
+                                <i class="fa fa-search"></i>
+                              </button>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="col-auto ">
-                        <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" v-model="statusFiltre">
-                          <option :selected="true" value="all">Tout les status</option>
-                          <option value="Accepted">Acceptée</option>
-                          <option value="Pending">En attente</option>
-                          <option value="Refused">Refusée</option>
-                        </select>
-                      </div>
-                    </div>    
+                        <div class="col-auto ">
+                          <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" v-model="statusFiltre">
+                            <option :selected="true" value="all">Tout les status</option>
+                            <option value="Accepted">Acceptée</option>
+                            <option value="Pending">En attente</option>
+                            <option value="Refused">Refusée</option>
+                          </select>
+                        </div>
+                      </div>    
+                    </div>
                   </div>
                 </div>
                 <!-- /.card-header -->
@@ -153,14 +155,14 @@
                 <!-- /.card-body -->
                 <div class="card-footer clearfix">
                   <nav>
-                      <ul>
-                          <li @click="setPreviousPage" v-if="this.index != 0">
-                              <button type="button"></button>
-                          </li>
-                          <li @click="setNextPage" v-if="this.index < this.computedCards.length - 5">
-                              <button type="button"></button>
-                          </li>              
-                      </ul>
+                      <div class="list-unstyled d-flex justify-content-between">
+                          <div @click="setPreviousPage" v-if="this.index != 0">
+                              <button type="button" class="btn"><i class="fas fa-chevron-left"></i></button>
+                          </div>
+                          <div @click="setNextPage" v-if="this.index < this.computedCards.length - 5">
+                              <button type="button" class="btn"><i class="fas fa-chevron-right"></i></button>
+                          </div>              
+                      </div>
                   </nav>
                 </div>
                 <!-- /.card-footer -->

@@ -25,9 +25,13 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/login', [popupRedirect::class, 'index'])
+Route::get('/login', [popupRedirect::class, 'loginIndex'])
     ->middleware('guest')
     ->name('login');
+
+Route::get('/register', [popupRedirect::class, 'registerIndex'])
+    ->middleware('guest')
+    ->name('register');
 
 Route::get('dashboard', [UserController::class, 'index'])->middleware('auth')->name('dashboard');
 Route::get('convertir', [UserController::class, 'profil_convertir'])->middleware('auth')->name('profil_convertir');
