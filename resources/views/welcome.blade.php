@@ -24,58 +24,59 @@
         </style>
     </head>
     <body class="antialiased bg-white">
-
-    <div class="offcanvas offcanvas-end btn-SecondaryColor" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false" style="width: 50%">
-    <div class="offcanvas-header">
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body px-0">
-        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start" id="menu">
-            <li class="nav-item">
-                <a href="#header" class="nav-link text-truncate">
-                    <i class="fs-5 bi-house"></i><span class="ms-1 text-white fw-bold">Accueil</span>
-                </a>
-            </li>
-            <li>
-                <a href="#service" class="nav-link text-truncate">
-                    <i class="fs-5 bi-speedometer2"></i><span class="ms-1 text-white fw-bold">A Propos</span> </a>
-            </li>
-            <li>
-                <a href="#footer" class="nav-link text-truncate">
-                    <i class="fs-5 bi-table"></i><span class="ms-1 text-white fw-bold">Contact</span></a>
-            </li>
-        @if (Route::has('login'))
-                    @auth
-                    <li>
-                        <a href="/dashboard" class="nav-link text-truncate">
-                        <span class="btn me-3 purplecolorbg fw-bold mb-0 ms-1 secondarycolor fw-bold">Convertir</span> </a>
+        <div class="offcanvas offcanvas-end btn-SecondaryColor" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false" style="width: 50%">
+            <div class="offcanvas-header">
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body px-0">
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-start" id="menu">
+                    <li class="nav-item">
+                        <a href="#header" class="nav-link text-truncate">
+                            <i class="fs-5 bi-house"></i><span class="ms-1 text-white fw-bold">Accueil</span>
+                        </a>
                     </li>
                     <li>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <a class="nav-link text-truncate" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();"><span class="btn me-3 purplecolorbg fw-bold mb-0 ms-1 secondarycolor fw-bold">Déconnexion</span> </a>
-                        </form>
-                
+                        <a href="#service" class="nav-link text-truncate">
+                            <i class="fs-5 bi-speedometer2"></i><span class="ms-1 text-white fw-bold">A Propos</span>
+                        </a>
                     </li>
+                    <li>
+                        <a href="#footer" class="nav-link text-truncate">
+                            <i class="fs-5 bi-table"></i><span class="ms-1 text-white fw-bold">Contact</span>
+                        </a>
+                    </li>
+                    @if (Route::has('login'))
+                        @auth
+                            <li>
+                                <a href="/dashboard" class="nav-link text-truncate">
+                                    <span class="btn me-3 purplecolorbg fw-bold mb-0 ms-1 secondarycolor fw-bold">Convertir</span>
+                                </a>
+                            </li>
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <a class="nav-link text-truncate" href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
+                                        <span class="btn me-3 purplecolorbg fw-bold mb-0 ms-1 secondarycolor fw-bold">Déconnexion</span> 
+                                    </a>
+                                </form>
+                            </li>
                 
-                    @else
-                        <li>
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" class="nav-link text-truncate">
-                            <i class="fs-5 bi-table"></i><span class="btn me-3 purplecolorbg fw-bold mb-0 ms-1 secondarycolor  fw-bold">Connexion</span></a>
-                        </li>
-                        @if (Route::has('register'))
-                        <li>
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" class="nav-link text-truncate">
-                            <i class="fs-5 bi-speedometer2"></i><span class="btn me-3 purplecolorbg fw-bold mb-0 ms-1 secondarycolor fw-bold">S'enregistrer</span> </a>
-                        </li>                    
-                        @endif
-        </ul>
-                    @endauth
-                </div>
+                        @else
+                            <li>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal" class="nav-link text-truncate">
+                                <i class="fs-5 bi-table"></i><span class="btn me-3 purplecolorbg fw-bold mb-0 ms-1 secondarycolor  fw-bold">Connexion</span></a>
+                            </li>
+                            @if (Route::has('register'))
+                                <li>
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" class="nav-link text-truncate">
+                                    <i class="fs-5 bi-speedometer2"></i><span class="btn me-3 purplecolorbg fw-bold mb-0 ms-1 secondarycolor fw-bold">S'enregistrer</span> </a>
+                                </li>                    
                 @endif
-    </div>
-</div>
-
+                </ul>
+                @endauth
+            </div>
+                @endif
+        </div>
         <nav id="navbar_top" class="navbar navbar-light top-0 z-50 fixed navbar-expand-lg custom-nav fixed-top">
             <!-- Container wrapper -->
             <div class="container-fluid">
@@ -86,10 +87,6 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
-
-                
-
                 <!-- Collapsible wrapper -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Navbar brand -->
@@ -354,6 +351,7 @@
             @csrf
             
             @if ($errors->any())
+                <p>{{$errors}}</p>
                 <div class="alert alert-danger">
                         @foreach ($errors->all() as $error)
                              <strong>{{ $error }}</strong>
@@ -440,30 +438,30 @@
 
             <!-- Email Address -->
             <div class="block mt-4">
-                <x-label for="email" :value="__('Email')" />
+                <x-label for="emailRegister" :value="__('Email')" />
                 @if(!empty(Session::get('google_link')) && Session::get('google_link') == 5)
-                    <input id="email" type="email" class="block mt-1 w-full form-control @error('email') is-invalid @enderror" name="email" value="{{ Session::get('mail') }}" autocomplete="email" autofocus readonly>
+                    <input id="emailRegister" type="email" class="block mt-1 w-full form-control @error('emailRegister') is-invalid @enderror" name="emailRegister" value="{{ Session::get('mail') }}" autocomplete="emailRegister" autofocus readonly>
                 @elseif(!empty(Session::get('github_link')) && Session::get('github_link') == 5)
-                    <input id="email" type="email" class="block mt-1 w-full form-control @error('email') is-invalid @enderror" name="email" value="{{ Session::get('mail') }}" autocomplete="email" autofocus readonly>
+                    <input id="emailRegister" type="email" class="block mt-1 w-full form-control @error('emailRegister') is-invalid @enderror" name="emailRegister" value="{{ Session::get('mail') }}" autocomplete="emailRegister" autofocus readonly>
                 @else  
-                    <input id="email" type="email" class="block mt-1 w-full form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                    <input id="emailRegister" type="email" class="block mt-1 w-full form-control @error('emailRegister') is-invalid @enderror" name="emailRegister" value="{{ old('email') }}" required autocomplete="emailRegister" autofocus>
                 @endif
             </div>
 
             <!-- Password -->
             <div class="block mt-4">
-                <x-label for="password" :value="__('Password')" />
+                <x-label for="passwordRegister" :value="__('Password')" />
 
-                <input id="password" type="password" class="block mt-1 w-full form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                <input id="passwordRegister" type="password" class="block mt-1 w-full form-control @error('passwordRegister') is-invalid @enderror" name="passwordRegister" required autocomplete="current-password">
             </div>
 
             <!-- Confirm Password -->
             <div class="block mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
+                <x-label for="passwordRegister_confirmation" :value="__('Confirm Password')" />
 
-                <input id="password_confirmation" class="block mt-1 w-full form-control"
+                <input id="passwordRegister_confirmation" class="block mt-1 w-full form-control"
                                 type="password"
-                                name="password_confirmation" required />
+                                name="passwordRegister_confirmation" required />
             </div>
 
             @if(!empty(Session::get('google_link')) && Session::get('google_link') == 5)
@@ -510,56 +508,61 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>    <script src="{{ asset('js/app.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>   
 
+        @if($errors->has('email') || $errors->has('password'))
+            <script>
+                $(function() {
+                    $('#loginModal').modal('show');
+                });
+            </script>
+        @endif
 
-@if($errors->has('email') || $errors->has('password'))
-    <script>
-    $(function() {
-                    console.log("sa");
+        @if($errors->has('emailRegister') || $errors->has('passwordRegister') || $errors->has('username') || $errors->has('password_confirmation'))
+            <script>
+                $(function() {
+                    $('#registerModal').modal('show');
+                });
+            </script>
+        @endif
 
-        $('#loginModal').modal('show');
-    });
-    </script>
-@endif
+        @if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
+            <script>
+                $(function() {
+                    $('#loginModal').modal('show');
+                });
+            </script>
+        @endif
 
-@if(!empty(Session::get('error_code')) && Session::get('error_code') == 5)
-<script>
-    $(function() {
-                    console.log("sa");
+        @if(!empty(Session::get('error_code')) && Session::get('error_code') == 6)
+            <script>
+                $(function() {       
+                    $('#registerModal').modal('show');
+                });
+            </script>
+        @endif
 
-        $('#loginModal').modal('show');
-    });
-</script>
-@endif
+        @if(!empty(Session::get('google_link')) && Session::get('google_link') == 5)
+            <script>
+                $(function() {
+                    $('#registerModal').modal('show');
+                });
+                $('#registerModal').on('hidden.bs.modal ', function (e) {
+                            location.reload();
+                })
+            </script>
+        @endif
 
-@if(!empty(Session::get('google_link')) && Session::get('google_link') == 5)
-<script>
-    $(function() {
-        $('#registerModal').modal('show');
-    });
-
-    $('#registerModal').on('hidden.bs.modal ', function (e) {
-                location.reload();
-
-
-    })
-</script>
-@endif
-
-@if(!empty(Session::get('github_link')) && Session::get('github_link') == 5)
-<script>
-    $(function() {
-        $('#registerModal').modal('show');
-    });
-
-    $('#registerModal').on('hidden.bs.modal ', function (e) {
-                location.reload();
-
-
-    })
-</script>
-@endif
+        @if(!empty(Session::get('github_link')) && Session::get('github_link') == 5)
+            <script>
+                $(function() {
+                    $('#registerModal').modal('show');
+                });
+                $('#registerModal').on('hidden.bs.modal ', function (e) {
+                            location.reload();
+                })
+            </script>
+        @endif
     </body>
 </html>
 
