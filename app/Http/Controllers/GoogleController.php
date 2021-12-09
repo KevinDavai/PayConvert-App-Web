@@ -46,7 +46,6 @@ class GoogleController extends Controller
 
         switch ($type) {
             case 'login':
-                dd("salut");
                 $finduser = User::where('google_id', $user->id)->first();
 
                 $userMail = $user->getEmail();
