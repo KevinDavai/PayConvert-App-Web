@@ -45,8 +45,8 @@ class RegisteredUserController extends Controller
             case 'google':
                 $user = User::create([
                     'username' => $request->username,
-                    'email' => $request->email,
-                    'password' => Hash::make($request->password),
+                    'email' => $request->emailRegister,
+                    'password' => Hash::make($request->passwordRegister),
                     'google_id' => $request->idGoogle,
                     'google_name' => $request->usernameGoogle,
                 ]);
@@ -54,8 +54,8 @@ class RegisteredUserController extends Controller
             case 'Github':
                 $user = User::create([
                     'username' => $request->username,
-                    'email' => $request->email,
-                    'password' => Hash::make($request->password),
+                    'email' => $request->emailRegister,
+                    'password' => Hash::make($request->passwordRegister),
                     'github_id' => $request->idGithub,
                     'github_name' => $request->usernameGithub,
                 ]);

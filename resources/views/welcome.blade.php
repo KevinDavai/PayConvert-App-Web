@@ -483,14 +483,14 @@
 
             <hr class="hrwide">
                 <div class="flex items-center justify-end mt-4">
-                @if(!empty(Session::get('google_link')) && Session::get('google_link') == 5)
+                @if(!empty(Session::get('google_link')) && Session::get('google_link') == 5 || !empty(Session::get('github_link')) && Session::get('github_link') == 5)
                 @else
                 <a class="btn btn-social-icon btn-google mx-1" href="{{ url('/auth/google/login') }}" role="button"">
                         <span class="fab fa-google"></span>
                     </a>
                 @endif
         
-                @if(!empty(Session::get('github_link')) && Session::get('github_link') == 5)
+                @if(!empty(Session::get('github_link')) && Session::get('github_link') == 5 || !empty(Session::get('google_link')) && Session::get('google_link') == 5 )
                 @else                
                     <a class="btn btn-social-icon btn-github mx-1" href="{{ url('/auth/github/login') }}" role="button">
                         <span class="fab fa-github"></span>
