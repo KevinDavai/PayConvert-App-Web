@@ -22,7 +22,6 @@ class CardController extends Controller
         ]);
 
         $user = User::find(Auth::id());
-        dd($user);
         $user_id = $user->id;
 
         $card = Card::create([
