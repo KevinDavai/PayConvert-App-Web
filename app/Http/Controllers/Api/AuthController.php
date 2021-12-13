@@ -25,19 +25,19 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
-            'name' => $request->name,
+            'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
         $token = $user->createToken("myapptoken")->plainTextToken;
-        
+
         // Send response
         $response = [
             'error' => false,
@@ -57,15 +57,15 @@ class AuthController extends Controller
         ]);
 
         $user = User::where('email', $fields['email'])->first();
-        
-        if(!$user || !Hash::check($fields['password'], $user->password)) {
+
+        if (!$user || !Hash::check($fields['password'], $user->password)) {
             return response([
                 'message' => 'Bad Credentials'
             ], 401);
         }
 
         $token = $user->createToken("myapptoken")->plainTextToken;
-        
+
         $response = [
             'error' => false,
             'message' => "Succes",
@@ -77,11 +77,12 @@ class AuthController extends Controller
     }
 
 
-    public function logout(Request $request) {
-        
+    public function logout(Request $request)
+    {
+
         /** @var \App\Models\User */
         $currentUser = Auth::user();
-       
+
         $currentUser->tokens()->delete();
 
         return [
@@ -89,19 +90,20 @@ class AuthController extends Controller
         ];
     }
 
-    public function uploadImg(Request $request) {
+    public function uploadImg(Request $request)
+    {
 
-        $request->validate([ 
+        $request->validate([
             'user_id' => 'required',
             'file'  => 'required|mimes:png,jpg|max:2048',
-        ]);   
+        ]);
 
- 
+
         if ($files = $request->file('file')) {
-             
+
             //store file into document folder
             $file = $request->file->store('public/documents');
- 
+
             //store your file into database
             $image = new Images();
             $image->path = $file;
@@ -113,10 +115,8 @@ class AuthController extends Controller
                 "message" => "File successfully uploaded",
                 "file" => $file
             ];
-  
-            return response($response, 201);
 
+            return response($response, 201);
         }
     }
-
 }
