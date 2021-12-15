@@ -16,7 +16,7 @@
                 <span class="info-box-icon bg-success elevation-1"><i class="fas fa-dollar-sign"></i></span>
 
                 <div class="info-box-content">
-                  <span class="info-box-text fw-bold">Argent convertis</span>
+                  <span class="info-box-text fw-bold">Argent converti</span>
                   <span class="info-box-number">{{ this.money }}€</span>
                 </div>
                 <!-- /.info-box-content -->

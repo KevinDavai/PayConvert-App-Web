@@ -37,7 +37,7 @@
                     </li>
                     <li>
                         <a href="#service" class="nav-link text-truncate">
-                            <i class="fs-5 bi-speedometer2"></i><span class="ms-1 text-white fw-bold">A Propos</span>
+                            <i class="fs-5 bi-speedometer2"></i><span class="ms-1 text-white fw-bold">À Propos</span>
                         </a>
                     </li>
                     <li>
@@ -332,7 +332,7 @@
     <!-- Copyright -->
     <div class="text-center p-4 text-dark">
       © 2021 Copyright:
-      <a class="text-reset fw-bold" href="https://PayConvert.com/">PayConvert.com</a>
+      <a class="text-reset fw-bold" href="https://payconvert.fr/">PayConvert.fr</a>
     </div>
     <!-- Copyright -->
   </footer>
